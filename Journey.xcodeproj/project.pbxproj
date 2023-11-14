@@ -11,6 +11,9 @@
 		156C09D12B034CA800B6C952 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09D02B034CA800B6C952 /* ContentView.swift */; };
 		156C09D32B034CAA00B6C952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156C09D22B034CAA00B6C952 /* Assets.xcassets */; };
 		156C09D62B034CAA00B6C952 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156C09D52B034CAA00B6C952 /* Preview Assets.xcassets */; };
+		156C09E22B034F7600B6C952 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09E12B034F7600B6C952 /* LoginView.swift */; };
+		156C09E42B034FD800B6C952 /* RubikOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 156C09E32B034FD800B6C952 /* RubikOne-Regular.ttf */; };
+		156C09E92B03506400B6C952 /* Font + extns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09E82B03506400B6C952 /* Font + extns.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,10 @@
 		156C09D02B034CA800B6C952 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		156C09D22B034CAA00B6C952 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		156C09D52B034CAA00B6C952 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		156C09E12B034F7600B6C952 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		156C09E32B034FD800B6C952 /* RubikOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RubikOne-Regular.ttf"; sourceTree = "<group>"; };
+		156C09E62B03500A00B6C952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		156C09E82B03506400B6C952 /* Font + extns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font + extns.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +78,10 @@
 		156C09DC2B034CFC00B6C952 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				156C09E62B03500A00B6C952 /* Info.plist */,
 				156C09D22B034CAA00B6C952 /* Assets.xcassets */,
 				156C09CE2B034CA800B6C952 /* JourneyApp.swift */,
+				156C09E52B034FDA00B6C952 /* Fonts */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -96,6 +105,7 @@
 		156C09DF2B034D0D00B6C952 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				156C09E72B03505600B6C952 /* Extentions */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -103,8 +113,25 @@
 		156C09E02B034D3B00B6C952 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				156C09E12B034F7600B6C952 /* LoginView.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		156C09E52B034FDA00B6C952 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				156C09E32B034FD800B6C952 /* RubikOne-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		156C09E72B03505600B6C952 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				156C09E82B03506400B6C952 /* Font + extns.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +194,7 @@
 			files = (
 				156C09D62B034CAA00B6C952 /* Preview Assets.xcassets in Resources */,
 				156C09D32B034CAA00B6C952 /* Assets.xcassets in Resources */,
+				156C09E42B034FD800B6C952 /* RubikOne-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +205,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				156C09E22B034F7600B6C952 /* LoginView.swift in Sources */,
+				156C09E92B03506400B6C952 /* Font + extns.swift in Sources */,
 				156C09D12B034CA800B6C952 /* ContentView.swift in Sources */,
 				156C09CF2B034CA800B6C952 /* JourneyApp.swift in Sources */,
 			);
@@ -315,6 +345,7 @@
 				DEVELOPMENT_TEAM = PP55TUKCZU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Journey/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -344,6 +375,7 @@
 				DEVELOPMENT_TEAM = PP55TUKCZU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Journey/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
