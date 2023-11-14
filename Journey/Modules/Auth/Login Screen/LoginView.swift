@@ -1,15 +1,9 @@
-//
-//  LoginView.swift
-//  Journey
-//
-//  Created by Шарап Бамматов on 14.11.2023.
-//
-
 import SwiftUI
 
 struct LoginView: View {
     @State private var email = String()
     @State private var password = String()
+    @State private var showRegistrView = Bool()
     
     var isEmailValid: Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -31,11 +25,15 @@ struct LoginView: View {
                 
                 Spacer()
                 
-                googleAndFacebookButton
+                GoogleAndFacebookButtons(googleAction: {}, facebookAction: {})
             }
             .padding(.top, 150)
             .padding(.vertical)
         }
+        .navigationDestination(isPresented: $showRegistrView, destination: {
+            RegistrationView()
+                .navigationBarBackButtonHidden(true)
+        })
         .edgesIgnoringSafeArea(.bottom)
         .ignoresSafeArea()
         .onTapGesture {
@@ -45,21 +43,15 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    NavigationStack {
+        LoginView()
+    }
 }
 
 extension LoginView {
     private var textFields: some View {
         VStack {
-            Text("Journey")
-                .font(.regular(size: 70))
-                .foregroundStyle(.white)
-            
-            Text("Мобильный сервис по бронированию тур поездок по Дагестану")
-                .font(.regular(size: 14))
-                .foregroundStyle(.white)
-                .frame(width: 200)
-                .multilineTextAlignment(.center)
+            JourneyTitleView()
             
             VStack(spacing: 7) {
                 RoundedTextField(placeholder: "Почта", text: $email, imageName: isEmailValid ? "checkmark" : "", isSecure: false, imageColor: .green)
@@ -72,7 +64,7 @@ extension LoginView {
     private var buttons: some View {
         HStack {
             Button {
-                
+                showRegistrView.toggle()
             } label: {
                 Text("Регистрация")
                     .font(.regular(size: 14))
@@ -111,41 +103,5 @@ extension LoginView {
         }
         .padding(.top, 20)
         .padding(.horizontal, 16)
-    }
-    private var googleAndFacebookButton: some View {
-        VStack {
-            Text("Или")
-                .font(.regular(size: 18))
-                .foregroundStyle(.white)
-            
-            HStack(spacing: 20) {
-                Button {
-                    
-                } label: {
-                    RoundedRectangle(cornerRadius: 23)
-                        .fill(.white)
-                        .frame(width: 60, height: 60)
-                        .overlay {
-                            Image("googleIcon")
-                                .resizable()
-                                .frame(width: 36, height: 36)
-                        }
-                }
-                
-                Button {
-                    
-                } label: {
-                    RoundedRectangle(cornerRadius: 23)
-                        .fill(.white)
-                        .frame(width: 60, height: 60)
-                        .overlay {
-                            Image("facebookIcon")
-                                .resizable()
-                                .frame(width: 24, height: 30)
-                        }
-                }
-            }
-        }
-        .padding(.bottom, 20)
     }
 }

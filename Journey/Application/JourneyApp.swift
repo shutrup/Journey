@@ -15,7 +15,10 @@ struct JourneyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                LoginView()
+                    .preferredColorScheme(.light)
+            }
         }
     }
 }
