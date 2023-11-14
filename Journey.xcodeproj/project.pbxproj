@@ -51,9 +51,10 @@
 		156C09CD2B034CA800B6C952 /* Journey */ = {
 			isa = PBXGroup;
 			children = (
-				156C09CE2B034CA800B6C952 /* JourneyApp.swift */,
-				156C09D02B034CA800B6C952 /* ContentView.swift */,
-				156C09D22B034CAA00B6C952 /* Assets.xcassets */,
+				156C09DC2B034CFC00B6C952 /* Application */,
+				156C09DF2B034D0D00B6C952 /* Common */,
+				156C09DD2B034D0100B6C952 /* Models */,
+				156C09DE2B034D0600B6C952 /* Modules */,
 				156C09D42B034CAA00B6C952 /* Preview Content */,
 			);
 			path = Journey;
@@ -65,6 +66,45 @@
 				156C09D52B034CAA00B6C952 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		156C09DC2B034CFC00B6C952 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				156C09D22B034CAA00B6C952 /* Assets.xcassets */,
+				156C09CE2B034CA800B6C952 /* JourneyApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		156C09DD2B034D0100B6C952 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		156C09DE2B034D0600B6C952 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				156C09E02B034D3B00B6C952 /* Auth */,
+				156C09D02B034CA800B6C952 /* ContentView.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		156C09DF2B034D0D00B6C952 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		156C09E02B034D3B00B6C952 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
