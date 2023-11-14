@@ -14,6 +14,8 @@
 		156C09E22B034F7600B6C952 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09E12B034F7600B6C952 /* LoginView.swift */; };
 		156C09E42B034FD800B6C952 /* RubikOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 156C09E32B034FD800B6C952 /* RubikOne-Regular.ttf */; };
 		156C09E92B03506400B6C952 /* Font + extns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09E82B03506400B6C952 /* Font + extns.swift */; };
+		156C09ED2B03551800B6C952 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09EC2B03551800B6C952 /* RoundedTextField.swift */; };
+		156C09EF2B03673B00B6C952 /* UIApplication + extns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09EE2B03673B00B6C952 /* UIApplication + extns.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		156C09E32B034FD800B6C952 /* RubikOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RubikOne-Regular.ttf"; sourceTree = "<group>"; };
 		156C09E62B03500A00B6C952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		156C09E82B03506400B6C952 /* Font + extns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font + extns.swift"; sourceTree = "<group>"; };
+		156C09EC2B03551800B6C952 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		156C09EE2B03673B00B6C952 /* UIApplication + extns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + extns.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 		156C09DF2B034D0D00B6C952 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				156C09EB2B0354E600B6C952 /* Components */,
 				156C09E72B03505600B6C952 /* Extentions */,
 			);
 			path = Common;
@@ -113,7 +118,7 @@
 		156C09E02B034D3B00B6C952 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				156C09E12B034F7600B6C952 /* LoginView.swift */,
+				156C09EA2B0354C400B6C952 /* Login Screen */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -130,8 +135,25 @@
 			isa = PBXGroup;
 			children = (
 				156C09E82B03506400B6C952 /* Font + extns.swift */,
+				156C09EE2B03673B00B6C952 /* UIApplication + extns.swift */,
 			);
 			path = Extentions;
+			sourceTree = "<group>";
+		};
+		156C09EA2B0354C400B6C952 /* Login Screen */ = {
+			isa = PBXGroup;
+			children = (
+				156C09E12B034F7600B6C952 /* LoginView.swift */,
+			);
+			path = "Login Screen";
+			sourceTree = "<group>";
+		};
+		156C09EB2B0354E600B6C952 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				156C09EC2B03551800B6C952 /* RoundedTextField.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,9 +227,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				156C09EF2B03673B00B6C952 /* UIApplication + extns.swift in Sources */,
 				156C09E22B034F7600B6C952 /* LoginView.swift in Sources */,
 				156C09E92B03506400B6C952 /* Font + extns.swift in Sources */,
 				156C09D12B034CA800B6C952 /* ContentView.swift in Sources */,
+				156C09ED2B03551800B6C952 /* RoundedTextField.swift in Sources */,
 				156C09CF2B034CA800B6C952 /* JourneyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

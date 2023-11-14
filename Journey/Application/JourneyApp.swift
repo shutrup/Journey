@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct JourneyApp: App {
+    init() {
+        UITextField.appearance().clearButtonMode = .whileEditing
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
