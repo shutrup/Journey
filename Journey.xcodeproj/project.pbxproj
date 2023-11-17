@@ -22,6 +22,8 @@
 		152FA8B22B07B584007CC97A /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 152FA8AE2B07B584007CC97A /* Montserrat-Bold.ttf */; };
 		152FA8B32B07B584007CC97A /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 152FA8AF2B07B584007CC97A /* Montserrat-Regular.ttf */; };
 		152FA8B42B07B584007CC97A /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 152FA8B02B07B584007CC97A /* Montserrat-Medium.ttf */; };
+		152FA8B92B07BE78007CC97A /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FA8B82B07BE78007CC97A /* CustomSearchBar.swift */; };
+		152FA8BC2B07C1B3007CC97A /* TourLargeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FA8BB2B07C1B3007CC97A /* TourLargeCard.swift */; };
 		156C09CF2B034CA800B6C952 /* JourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09CE2B034CA800B6C952 /* JourneyApp.swift */; };
 		156C09D32B034CAA00B6C952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156C09D22B034CAA00B6C952 /* Assets.xcassets */; };
 		156C09D62B034CAA00B6C952 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156C09D52B034CAA00B6C952 /* Preview Assets.xcassets */; };
@@ -48,6 +50,8 @@
 		152FA8AE2B07B584007CC97A /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		152FA8AF2B07B584007CC97A /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		152FA8B02B07B584007CC97A /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		152FA8B82B07BE78007CC97A /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		152FA8BB2B07C1B3007CC97A /* TourLargeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourLargeCard.swift; sourceTree = "<group>"; };
 		156C09CB2B034CA800B6C952 /* Journey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		156C09CE2B034CA800B6C952 /* JourneyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyApp.swift; sourceTree = "<group>"; };
 		156C09D22B034CAA00B6C952 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 		152FA8A12B07B34B007CC97A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				152FA8BA2B07C199007CC97A /* Components */,
 				152FA8A22B07B351007CC97A /* Home Screen */,
 			);
 			path = Home;
@@ -110,6 +115,22 @@
 				152FA8A32B07B364007CC97A /* HomeView.swift */,
 			);
 			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		152FA8B52B07BA94007CC97A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				152FA8B82B07BE78007CC97A /* CustomSearchBar.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		152FA8BA2B07C199007CC97A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				152FA8BB2B07C1B3007CC97A /* TourLargeCard.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		156C09C22B034CA800B6C952 = {
@@ -179,6 +200,7 @@
 		156C09DF2B034D0D00B6C952 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				152FA8B52B07BA94007CC97A /* Components */,
 				156C09E72B03505600B6C952 /* Extensions */,
 			);
 			path = Common;
@@ -318,11 +340,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1512E95C2B03A25500281F12 /* GoogleAndFacebookButtons.swift in Sources */,
+				152FA8B92B07BE78007CC97A /* CustomSearchBar.swift in Sources */,
 				156C09EF2B03673B00B6C952 /* UIApplication + extns.swift in Sources */,
 				152FA89C2B07ACA8007CC97A /* MainTabView.swift in Sources */,
 				156C09E22B034F7600B6C952 /* LoginView.swift in Sources */,
 				156C09E92B03506400B6C952 /* Font + extns.swift in Sources */,
 				156C09ED2B03551800B6C952 /* RoundedTextField.swift in Sources */,
+				152FA8BC2B07C1B3007CC97A /* TourLargeCard.swift in Sources */,
 				1512E95A2B03A1CA00281F12 /* JourneyTitleView.swift in Sources */,
 				152FA89E2B07ADB2007CC97A /* CustomTabView.swift in Sources */,
 				156C09CF2B034CA800B6C952 /* JourneyApp.swift in Sources */,
