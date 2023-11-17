@@ -10,6 +10,9 @@
 		1512E95A2B03A1CA00281F12 /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512E9592B03A1CA00281F12 /* JourneyTitleView.swift */; };
 		1512E95C2B03A25500281F12 /* GoogleAndFacebookButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512E95B2B03A25500281F12 /* GoogleAndFacebookButtons.swift */; };
 		1512E95F2B03A2DC00281F12 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512E95E2B03A2DC00281F12 /* RegistrationView.swift */; };
+		152FA89C2B07ACA8007CC97A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FA89B2B07ACA8007CC97A /* MainTabView.swift */; };
+		152FA89E2B07ADB2007CC97A /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FA89D2B07ADB2007CC97A /* CustomTabView.swift */; };
+		152FA8A02B07AF69007CC97A /* Color + extns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FA89F2B07AF69007CC97A /* Color + extns.swift */; };
 		156C09CF2B034CA800B6C952 /* JourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09CE2B034CA800B6C952 /* JourneyApp.swift */; };
 		156C09D32B034CAA00B6C952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156C09D22B034CAA00B6C952 /* Assets.xcassets */; };
 		156C09D62B034CAA00B6C952 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156C09D52B034CAA00B6C952 /* Preview Assets.xcassets */; };
@@ -24,6 +27,9 @@
 		1512E9592B03A1CA00281F12 /* JourneyTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
 		1512E95B2B03A25500281F12 /* GoogleAndFacebookButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAndFacebookButtons.swift; sourceTree = "<group>"; };
 		1512E95E2B03A2DC00281F12 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		152FA89B2B07ACA8007CC97A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		152FA89D2B07ADB2007CC97A /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
+		152FA89F2B07AF69007CC97A /* Color + extns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + extns.swift"; sourceTree = "<group>"; };
 		156C09CB2B034CA800B6C952 /* Journey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		156C09CE2B034CA800B6C952 /* JourneyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyApp.swift; sourceTree = "<group>"; };
 		156C09D22B034CAA00B6C952 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +59,23 @@
 				1512E95E2B03A2DC00281F12 /* RegistrationView.swift */,
 			);
 			path = "Registration Screen";
+			sourceTree = "<group>";
+		};
+		152FA8992B07AC7B007CC97A /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				152FA89A2B07AC8B007CC97A /* MainTabView */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		152FA89A2B07AC8B007CC97A /* MainTabView */ = {
+			isa = PBXGroup;
+			children = (
+				152FA89B2B07ACA8007CC97A /* MainTabView.swift */,
+				152FA89D2B07ADB2007CC97A /* CustomTabView.swift */,
+			);
+			path = MainTabView;
 			sourceTree = "<group>";
 		};
 		156C09C22B034CA800B6C952 = {
@@ -112,6 +135,7 @@
 		156C09DE2B034D0600B6C952 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				152FA8992B07AC7B007CC97A /* TabBar */,
 				156C09E02B034D3B00B6C952 /* Auth */,
 			);
 			path = Modules;
@@ -148,6 +172,7 @@
 			children = (
 				156C09E82B03506400B6C952 /* Font + extns.swift */,
 				156C09EE2B03673B00B6C952 /* UIApplication + extns.swift */,
+				152FA89F2B07AF69007CC97A /* Color + extns.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -243,12 +268,15 @@
 			files = (
 				1512E95C2B03A25500281F12 /* GoogleAndFacebookButtons.swift in Sources */,
 				156C09EF2B03673B00B6C952 /* UIApplication + extns.swift in Sources */,
+				152FA89C2B07ACA8007CC97A /* MainTabView.swift in Sources */,
 				156C09E22B034F7600B6C952 /* LoginView.swift in Sources */,
 				156C09E92B03506400B6C952 /* Font + extns.swift in Sources */,
 				156C09ED2B03551800B6C952 /* RoundedTextField.swift in Sources */,
 				1512E95A2B03A1CA00281F12 /* JourneyTitleView.swift in Sources */,
+				152FA89E2B07ADB2007CC97A /* CustomTabView.swift in Sources */,
 				156C09CF2B034CA800B6C952 /* JourneyApp.swift in Sources */,
 				1512E95F2B03A2DC00281F12 /* RegistrationView.swift in Sources */,
+				152FA8A02B07AF69007CC97A /* Color + extns.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
