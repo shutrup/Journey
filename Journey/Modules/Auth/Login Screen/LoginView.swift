@@ -67,7 +67,7 @@ extension LoginView {
                 showRegistrView.toggle()
             } label: {
                 Text("Регистрация")
-                    .font(.regular(size: 14))
+                    .font(.rubikRegular(size: 14))
                     .foregroundStyle(.white)
                     .padding(.leading, 31)
                     .padding(.trailing, 32)
@@ -83,7 +83,7 @@ extension LoginView {
                 
             } label: {
                 Text("Войти")
-                    .font(.regular(size: 14))
+                    .font(.rubikRegular(size: 14))
                     .foregroundStyle(.white)
                     .padding(.horizontal, 0)
                     .padding(.vertical, 17)

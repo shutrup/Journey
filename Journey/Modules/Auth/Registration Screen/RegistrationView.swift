@@ -42,7 +42,7 @@ struct RegistrationView: View {
                 JourneyTitleView()
                 
                 Text("Регистрация")
-                    .font(.regular(size: 24))
+                    .font(.rubikRegular(size: 24))
                     .foregroundColor(.white)
                     .padding(.top)
                 
@@ -60,7 +60,7 @@ struct RegistrationView: View {
                     
                 } label: {
                     Text("Создать")
-                        .font(.regular(size: 14))
+                        .font(.rubikRegular(size: 14))
                         .foregroundStyle(.white)
                         .padding(.horizontal, 0)
                         .padding(.vertical, 17)

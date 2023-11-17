@@ -11,11 +11,11 @@ struct JourneyTitleView: View {
     var body: some View {
         Group {
             Text("Journey")
-                .font(.regular(size: 70))
+                .font(.rubikRegular(size: 70))
                 .foregroundStyle(.white)
             
             Text("Мобильный сервис по бронированию тур поездок по Дагестану")
-                .font(.regular(size: 14))
+                .font(.rubikRegular(size: 14))
                 .foregroundStyle(.white)
                 .frame(width: 200)
                 .multilineTextAlignment(.center)

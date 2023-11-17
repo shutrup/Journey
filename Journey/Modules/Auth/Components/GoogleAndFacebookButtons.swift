@@ -14,7 +14,7 @@ struct GoogleAndFacebookButtons: View {
     var body: some View {
         VStack {
             Text("Или")
-                .font(.regular(size: 18))
+                .font(.rubikRegular(size: 18))
                 .foregroundStyle(.white)
             
             HStack(spacing: 20) {

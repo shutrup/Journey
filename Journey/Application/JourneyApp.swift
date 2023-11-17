@@ -25,7 +25,7 @@ struct JourneyApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                LoginView()
+                MainTabView()
                     .preferredColorScheme(.light)
             }
         }

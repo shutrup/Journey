@@ -5,7 +5,7 @@ struct MainTabView: View {
     
     var body: some View {
         TabView(selection: $tabSelection) {
-            Text("Home")
+            HomeView()
                 .tag(1)
             
             Text("Search")
