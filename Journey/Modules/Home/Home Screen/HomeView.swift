@@ -18,23 +18,10 @@ struct HomeView: View {
                     
                     CustomSearchBar(searchText: $searchText, placeholder: "Думай")
                     
-                    VStack {
-                        HStack {
-                            Text("Рекомендации")
-                                .font(.montserratSemiBold(size: 16))
-                                .foregroundStyle(.black)
-                            
-                            Spacer()
-                            
-                            Text("Все")
-                                .font(.montserratSemiBold(size: 16))
-                                .foregroundStyle(Color.tabColor)
-                        }
-                        
-                        
-                    }
+                    tourLargeCardList
+                    
+                    tourSmallCardList
                 }
-                .padding(.horizontal, 20)
             }
             .background(Color(.systemGray6))
         }
@@ -67,7 +54,69 @@ extension HomeView {
             .foregroundStyle(.black)
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            Image(.notification)
+            Button {
+                
+            } label: {
+                Image(.notification)
+                    .foregroundStyle(.black)
+            }
+        }
+        .padding(.horizontal, 20)
+    }
+    private var tourLargeCardList: some View {
+        VStack {
+            HStack {
+                Text("Рекомендации")
+                    .font(.montserratBold(size: 16))
+                    .foregroundStyle(.black)
+                
+                Spacer()
+                
+                Button {
+                    
+                } label: {
+                    Text("Все")
+                        .font(.montserratSemiBold(size: 16))
+                        .foregroundStyle(Color.tabColor)
+                }
+            }
+            .padding(.horizontal, 20)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 0) {
+                    ForEach(0..<5, id: \.self) { _ in
+                        TourLargeCard()
+                            .padding(10)
+                    }
+                }
+                .padding(.leading, 10)
+            }
+        }
+    }
+    private var tourSmallCardList: some View {
+        VStack(spacing: 20) {
+            HStack {
+                Text("Можно присоединится")
+                    .font(.montserratBold(size: 16))
+                    .foregroundStyle(.black)
+                
+                Spacer()
+                
+                Button {
+                    
+                } label: {
+                    Text("Все")
+                        .font(.montserratSemiBold(size: 16))
+                        .foregroundStyle(Color.tabColor)
+                }
+            }
+            .padding(.horizontal, 20)
+            
+            LazyVStack(spacing: 20) {
+                ForEach(0..<5, id: \.self) { _ in
+                    TourSmallCard()
+                }
+            }
         }
     }
 }

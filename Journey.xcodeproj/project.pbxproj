@@ -25,6 +25,7 @@
 		152FA8B92B07BE78007CC97A /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FA8B82B07BE78007CC97A /* CustomSearchBar.swift */; };
 		152FA8BC2B07C1B3007CC97A /* TourLargeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FA8BB2B07C1B3007CC97A /* TourLargeCard.swift */; };
 		152FA8BF2B07C209007CC97A /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 152FA8BE2B07C209007CC97A /* SDWebImageSwiftUI */; };
+		152FA8C12B07F2AD007CC97A /* TourSmallCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FA8C02B07F2AC007CC97A /* TourSmallCard.swift */; };
 		156C09CF2B034CA800B6C952 /* JourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09CE2B034CA800B6C952 /* JourneyApp.swift */; };
 		156C09D32B034CAA00B6C952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156C09D22B034CAA00B6C952 /* Assets.xcassets */; };
 		156C09D62B034CAA00B6C952 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156C09D52B034CAA00B6C952 /* Preview Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		152FA8B02B07B584007CC97A /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		152FA8B82B07BE78007CC97A /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		152FA8BB2B07C1B3007CC97A /* TourLargeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourLargeCard.swift; sourceTree = "<group>"; };
+		152FA8C02B07F2AC007CC97A /* TourSmallCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourSmallCard.swift; sourceTree = "<group>"; };
 		156C09CB2B034CA800B6C952 /* Journey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		156C09CE2B034CA800B6C952 /* JourneyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyApp.swift; sourceTree = "<group>"; };
 		156C09D22B034CAA00B6C952 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				152FA8BB2B07C1B3007CC97A /* TourLargeCard.swift */,
+				152FA8C02B07F2AC007CC97A /* TourSmallCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				152FA8BC2B07C1B3007CC97A /* TourLargeCard.swift in Sources */,
 				1512E95A2B03A1CA00281F12 /* JourneyTitleView.swift in Sources */,
 				152FA89E2B07ADB2007CC97A /* CustomTabView.swift in Sources */,
+				152FA8C12B07F2AD007CC97A /* TourSmallCard.swift in Sources */,
 				156C09CF2B034CA800B6C952 /* JourneyApp.swift in Sources */,
 				152FA8A42B07B364007CC97A /* HomeView.swift in Sources */,
 				1512E95F2B03A2DC00281F12 /* RegistrationView.swift in Sources */,

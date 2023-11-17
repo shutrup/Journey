@@ -73,7 +73,6 @@ struct TourLargeCard: View {
             RoundedRectangle(cornerRadius: 32)
                 .fill(.white)
         }
-        .shadow(color: .black.opacity(0.1), radius: 10, x: 0.0, y: 0.0)
     }
 }
 
