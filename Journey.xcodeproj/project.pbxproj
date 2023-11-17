@@ -24,6 +24,7 @@
 		152FA8B42B07B584007CC97A /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 152FA8B02B07B584007CC97A /* Montserrat-Medium.ttf */; };
 		152FA8B92B07BE78007CC97A /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FA8B82B07BE78007CC97A /* CustomSearchBar.swift */; };
 		152FA8BC2B07C1B3007CC97A /* TourLargeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FA8BB2B07C1B3007CC97A /* TourLargeCard.swift */; };
+		152FA8BF2B07C209007CC97A /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 152FA8BE2B07C209007CC97A /* SDWebImageSwiftUI */; };
 		156C09CF2B034CA800B6C952 /* JourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09CE2B034CA800B6C952 /* JourneyApp.swift */; };
 		156C09D32B034CAA00B6C952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156C09D22B034CAA00B6C952 /* Assets.xcassets */; };
 		156C09D62B034CAA00B6C952 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156C09D52B034CAA00B6C952 /* Preview Assets.xcassets */; };
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				152FA8BF2B07C209007CC97A /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +278,9 @@
 			dependencies = (
 			);
 			name = Journey;
+			packageProductDependencies = (
+				152FA8BE2B07C209007CC97A /* SDWebImageSwiftUI */,
+			);
 			productName = Journey;
 			productReference = 156C09CB2B034CA800B6C952 /* Journey.app */;
 			productType = "com.apple.product-type.application";
@@ -304,6 +309,9 @@
 				Base,
 			);
 			mainGroup = 156C09C22B034CA800B6C952;
+			packageReferences = (
+				152FA8BD2B07C209007CC97A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 156C09CC2B034CA800B6C952 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -560,6 +568,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		152FA8BD2B07C209007CC97A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		152FA8BE2B07C209007CC97A /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 152FA8BD2B07C209007CC97A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 156C09C32B034CA800B6C952 /* Project object */;
 }
