@@ -40,6 +40,7 @@
 		15DF04422B0A18D600711D5E /* TourFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DF04412B0A18D600711D5E /* TourFilterView.swift */; };
 		15DF04442B0A27CB00711D5E /* FilterDataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DF04432B0A27CB00711D5E /* FilterDataPicker.swift */; };
 		15DF04462B0A50D000711D5E /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DF04452B0A50D000711D5E /* Date+String.swift */; };
+		15DF04482B0A5BFA00711D5E /* FilterPricePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DF04472B0A5BF900711D5E /* FilterPricePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		15DF04412B0A18D600711D5E /* TourFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourFilterView.swift; sourceTree = "<group>"; };
 		15DF04432B0A27CB00711D5E /* FilterDataPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDataPicker.swift; sourceTree = "<group>"; };
 		15DF04452B0A50D000711D5E /* Date+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
+		15DF04472B0A5BF900711D5E /* FilterPricePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPricePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +305,7 @@
 				15DF043D2B09310600711D5E /* CategoryRowView.swift */,
 				15DF043F2B0936A300711D5E /* TourGridCard.swift */,
 				15DF04432B0A27CB00711D5E /* FilterDataPicker.swift */,
+				15DF04472B0A5BF900711D5E /* FilterPricePicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				156C09E22B034F7600B6C952 /* LoginView.swift in Sources */,
 				156C09E92B03506400B6C952 /* Font + extns.swift in Sources */,
 				156C09ED2B03551800B6C952 /* RoundedTextField.swift in Sources */,
+				15DF04482B0A5BFA00711D5E /* FilterPricePicker.swift in Sources */,
 				152FA8BC2B07C1B3007CC97A /* TourLargeCard.swift in Sources */,
 				1512E95A2B03A1CA00281F12 /* JourneyTitleView.swift in Sources */,
 				152FA89E2B07ADB2007CC97A /* CustomTabView.swift in Sources */,

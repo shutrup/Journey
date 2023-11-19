@@ -33,7 +33,6 @@ struct FilterDataPicker: View {
             }
             .padding(.leading, 13)
             .padding(.vertical, 12)
-            .frame(width: 135)
             .foregroundStyle(Color.filterColor)
             .background {
                 RoundedRectangle(cornerRadius: 16)
