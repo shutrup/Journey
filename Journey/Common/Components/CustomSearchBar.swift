@@ -10,12 +10,24 @@ import SwiftUI
 struct CustomSearchBar: View {
     @Binding var searchText: String
     let placeholder: String
+    let isShowFilter: Bool
+    let action: () -> ()
     
     var body: some View {
         HStack(spacing: 11) {
             Image(.searchIcon)
             
             TextField(placeholder, text: $searchText)
+            
+            if isShowFilter {
+                Button {
+                    action()
+                } label: {
+                    Image(.setting)
+                        .padding(.trailing, 8)
+                        .foregroundStyle(Color.tabColor)
+                }
+            }
         }
         .padding(.horizontal, 13)
         .frame(width: UIScreen.main.bounds.width - 40, height: 60)
@@ -28,5 +40,5 @@ struct CustomSearchBar: View {
 }
 
 #Preview {
-    CustomSearchBar(searchText: .constant(""), placeholder: "Думай")
+    CustomSearchBar(searchText: .constant(""), placeholder: "Думай", isShowFilter: true, action: {})
 }

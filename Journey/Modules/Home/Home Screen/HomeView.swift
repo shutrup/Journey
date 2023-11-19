@@ -16,7 +16,7 @@ struct HomeView: View {
                 VStack(spacing: 20) {
                     homeTitle
                     
-                    CustomSearchBar(searchText: $searchText, placeholder: "Думай")
+                    CustomSearchBar(searchText: $searchText, placeholder: "Думай", isShowFilter: false, action: {})
                     
                     tourLargeCardList
                     

@@ -8,7 +8,7 @@ struct MainTabView: View {
             HomeView()
                 .tag(1)
             
-            Text("Search")
+            SearchView()
                 .tag(2)
             
             Text("Map")
@@ -19,6 +19,7 @@ struct MainTabView: View {
         }
         .overlay(alignment: .bottom) {
             CustomTabView(tabSelection: $tabSelection)
+                .offset(y: 10)
         }
     }
 }

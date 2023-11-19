@@ -9,6 +9,8 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct TourLargeCard: View {
+    @State private var isFavorite = true
+    
     var body: some View {
         VStack(spacing: 3) {
             WebImage(url: URL(string: "https://2spalnika.ru/wp-content/uploads/2022/12/sulakskiy-kanion-800x600.jpg")!)
@@ -22,15 +24,16 @@ struct TourLargeCard: View {
                 .clipShape(RoundedRectangle(cornerRadius: 24))
                 .overlay(alignment: .topTrailing) {
                     Button {
-                        
+                        isFavorite.toggle()
                     } label: {
                         ZStack {
                             Circle()
                                 .fill(.white)
                                 .frame(width: 36, height: 36)
                             
-                            Image(.heart)
-                                .foregroundStyle(.black)
+                            Image(.bookmark)
+                                .foregroundStyle(isFavorite ? Color.tabColor  : .black)
+                                .animation(.snappy, value: isFavorite)
                         }
                     }
                     .padding([.top, .trailing], 10)
