@@ -11,6 +11,7 @@ struct SearchView: View {
     @State var searchText = String()
     @State var categories: [String] = ["Пейзажи","Горы","Водоемы","Что то","Кто то"]
     @State var selectedCategories: [String] = []
+    @State var showFilter = Bool()
     
     private var gridItems: [GridItem] = [
         GridItem(spacing: 16),
@@ -18,21 +19,38 @@ struct SearchView: View {
     ]
     
     var body: some View {
-        VStack {
-            CustomSearchBar(searchText: $searchText, placeholder: "Думай", isShowFilter: true, action: {})
+        ZStack {
+            TourFilterView(show: $showFilter)
+                .isVisible(showFilter)
+                .zIndex(1)
             
-            categoriesList
-            
-            ScrollView {
-                LazyVGrid(columns: gridItems, spacing: 16, content: {
-                    ForEach(0..<10) { tour in
-                        TourGridCard(num: tour)
+            VStack {
+                CustomSearchBar(searchText: $searchText, placeholder: "Думай", isShowFilter: true, action: {
+                    withAnimation {
+                        showFilter.toggle()
                     }
                 })
-                .padding(.horizontal, 16)
+                
+                categoriesList
+                
+                ScrollView {
+                    LazyVGrid(columns: gridItems, spacing: 16, content: {
+                        ForEach(0..<10) { tour in
+                            TourGridCard(num: tour)
+                        }
+                    })
+                    .padding(.horizontal, 16)
+                }
+            }
+            .background(Color(.systemGray6))
+            .edgesIgnoringSafeArea(.bottom)
+            .onTapGesture {
+                withAnimation {
+                    showFilter = false
+                }
+                UIApplication.shared.endEditing()
             }
         }
-        .background(Color(.systemGray6))
     }
 }
 

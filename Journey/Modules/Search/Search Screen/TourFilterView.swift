@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct TourFilterView: View {
+    @Binding var show: Bool
     @State var toDate: Date = .now
     @State var fromDate: Date = .now
     
@@ -23,6 +24,27 @@ struct TourFilterView: View {
                     
                     FilterPricePicker(numberText: $fromPrice, placeholder: "До")
                 }
+                
+                placePicker
+                
+                groupSizePicker
+                
+                Spacer()
+                
+                
+                Button {
+                    
+                } label: {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color.tabColor)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .overlay {
+                            Text("Поиск")
+                                .font(.ptSansBold(size: 16))
+                                .foregroundStyle(.white)
+                        }
+                }
             }
             
             Spacer()
@@ -38,7 +60,7 @@ struct TourFilterView: View {
 }
 
 #Preview {
-    TourFilterView()
+    TourFilterView(show: .constant(true))
 }
 
 extension TourFilterView {
@@ -51,7 +73,9 @@ extension TourFilterView {
             Spacer()
             
             Button {
-                
+                withAnimation {
+                    show = false
+                }
             } label: {
                 Image(systemName: "xmark")
                     .foregroundStyle(.black)
@@ -60,5 +84,33 @@ extension TourFilterView {
             }
         }
         .padding(.top, 23)
+    }
+    private var placePicker: some View {
+        VStack {
+            HStack {
+                Image(.location)
+                
+                Text("Место")
+                    .font(.ptSansRegular(size: 14))
+                    .foregroundStyle(Color.filterColor)
+                
+                Spacer()
+            }
+            .modifier(FilterModifier())
+        }
+    }
+    private var groupSizePicker: some View {
+        VStack {
+            HStack {
+                Image(.people)
+                
+                Text("Численность группы / 1 минимум")
+                    .font(.ptSansRegular(size: 14))
+                    .foregroundStyle(Color.filterColor)
+                
+                Spacer()
+            }
+            .modifier(FilterModifier())
+        }
     }
 }

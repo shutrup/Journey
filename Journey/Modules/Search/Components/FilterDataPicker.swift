@@ -31,14 +31,7 @@ struct FilterDataPicker: View {
                 
                 Spacer()
             }
-            .padding(.leading, 13)
-            .padding(.vertical, 12)
-            .foregroundStyle(Color.filterColor)
-            .background {
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(lineWidth: 0.5)
-                    .fill(.black.opacity(0.2))
-            }
+            .modifier(FilterModifier())
         }
         .overlay {
             DatePicker(selection: $selectedDate, displayedComponents: .date) {}
