@@ -49,7 +49,6 @@ struct CustomTabView: View {
                     .onTapGesture {
                         withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.7, blendDuration: 0.7)) {
                             tabSelection = index + 1
-                            print(tabSelection)
                         }
                     }
                 }

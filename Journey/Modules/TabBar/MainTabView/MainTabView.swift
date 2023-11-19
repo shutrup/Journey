@@ -11,7 +11,7 @@ struct MainTabView: View {
             SearchView()
                 .tag(2)
             
-            Text("Map")
+            MapView()
                 .tag(3)
             
             Text("Profile")

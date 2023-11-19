@@ -34,6 +34,7 @@
 		156C09E92B03506400B6C952 /* Font + extns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09E82B03506400B6C952 /* Font + extns.swift */; };
 		156C09ED2B03551800B6C952 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09EC2B03551800B6C952 /* RoundedTextField.swift */; };
 		156C09EF2B03673B00B6C952 /* UIApplication + extns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156C09EE2B03673B00B6C952 /* UIApplication + extns.swift */; };
+		15970E832B0A685600F69EAD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15970E822B0A685600F69EAD /* MapView.swift */; };
 		15DF043B2B092F2E00711D5E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DF043A2B092F2E00711D5E /* SearchView.swift */; };
 		15DF043E2B09310600711D5E /* CategoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DF043D2B09310600711D5E /* CategoryRowView.swift */; };
 		15DF04402B0936A300711D5E /* TourGridCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DF043F2B0936A300711D5E /* TourGridCard.swift */; };
@@ -74,6 +75,7 @@
 		156C09E82B03506400B6C952 /* Font + extns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font + extns.swift"; sourceTree = "<group>"; };
 		156C09EC2B03551800B6C952 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		156C09EE2B03673B00B6C952 /* UIApplication + extns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + extns.swift"; sourceTree = "<group>"; };
+		15970E822B0A685600F69EAD /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		15DF043A2B092F2E00711D5E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		15DF043D2B09310600711D5E /* CategoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRowView.swift; sourceTree = "<group>"; };
 		15DF043F2B0936A300711D5E /* TourGridCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourGridCard.swift; sourceTree = "<group>"; };
@@ -215,6 +217,8 @@
 		156C09DE2B034D0600B6C952 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				15970E842B0A696700F69EAD /* Detail */,
+				15970E802B0A684200F69EAD /* Map */,
 				15DF04382B092F1E00711D5E /* Search */,
 				152FA8A12B07B34B007CC97A /* Home */,
 				152FA8992B07AC7B007CC97A /* TabBar */,
@@ -285,6 +289,37 @@
 				1512E95B2B03A25500281F12 /* GoogleAndFacebookButtons.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		15970E802B0A684200F69EAD /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				15970E812B0A684800F69EAD /* Map Screen */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		15970E812B0A684800F69EAD /* Map Screen */ = {
+			isa = PBXGroup;
+			children = (
+				15970E822B0A685600F69EAD /* MapView.swift */,
+			);
+			path = "Map Screen";
+			sourceTree = "<group>";
+		};
+		15970E842B0A696700F69EAD /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				15970E852B0A696D00F69EAD /* Detail Screen */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		15970E852B0A696D00F69EAD /* Detail Screen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Detail Screen";
 			sourceTree = "<group>";
 		};
 		15DF04382B092F1E00711D5E /* Search */ = {
@@ -413,6 +448,7 @@
 				156C09E92B03506400B6C952 /* Font + extns.swift in Sources */,
 				156C09ED2B03551800B6C952 /* RoundedTextField.swift in Sources */,
 				15DF04482B0A5BFA00711D5E /* FilterPricePicker.swift in Sources */,
+				15970E832B0A685600F69EAD /* MapView.swift in Sources */,
 				152FA8BC2B07C1B3007CC97A /* TourLargeCard.swift in Sources */,
 				1512E95A2B03A1CA00281F12 /* JourneyTitleView.swift in Sources */,
 				152FA89E2B07ADB2007CC97A /* CustomTabView.swift in Sources */,
