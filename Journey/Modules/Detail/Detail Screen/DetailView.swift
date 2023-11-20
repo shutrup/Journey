@@ -55,7 +55,6 @@ struct DetailView: View {
                     routing
                     
                     joinTour
-                    
                 }
             }
             
@@ -69,6 +68,7 @@ struct DetailView: View {
         .onAppear {
             selectedImage = images[0]
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

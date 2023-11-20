@@ -13,6 +13,8 @@ struct SearchView: View {
     @State var selectedCategories: [String] = []
     @State var showFilter = Bool()
     
+    @State var showDetail = Bool()
+    
     private var gridItems: [GridItem] = [
         GridItem(spacing: 16),
         GridItem(spacing: 16)
@@ -24,31 +26,39 @@ struct SearchView: View {
                 .isVisible(showFilter)
                 .zIndex(1)
             
-            VStack {
-                CustomSearchBar(searchText: $searchText, placeholder: "Думай", isShowFilter: true, action: {
-                    withAnimation {
-                        showFilter.toggle()
-                    }
-                })
-                
-                categoriesList
-                
-                ScrollView {
-                    LazyVGrid(columns: gridItems, spacing: 16, content: {
-                        ForEach(0..<10) { tour in
-                            TourGridCard(num: tour)
+            NavigationStack {
+                VStack {
+                    CustomSearchBar(searchText: $searchText, placeholder: "Думай", isShowFilter: true, action: {
+                        withAnimation {
+                            showFilter.toggle()
                         }
                     })
-                    .padding(.horizontal, 16)
+                    
+                    categoriesList
+                    
+                    ScrollView {
+                        LazyVGrid(columns: gridItems, spacing: 16, content: {
+                            ForEach(0..<10) { tour in
+                                TourGridCard(num: tour)
+                                    .onTapGesture {
+                                        showDetail.toggle()
+                                    }
+                            }
+                        })
+                        .padding(.horizontal, 16)
+                    }
                 }
-            }
-            .background(Color(.systemGray6))
-            .edgesIgnoringSafeArea(.bottom)
-            .onTapGesture {
-                withAnimation {
-                    showFilter = false
+                .background(Color(.systemGray6))
+                .edgesIgnoringSafeArea(.bottom)
+                .onTapGesture {
+                    withAnimation {
+                        showFilter = false
+                    }
+                    UIApplication.shared.endEditing()
                 }
-                UIApplication.shared.endEditing()
+                .navigationDestination(isPresented: $showDetail) {
+                    DetailView()
+                }
             }
         }
     }

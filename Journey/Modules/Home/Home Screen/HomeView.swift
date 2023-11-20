@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var searchText = String()
+    @State var showRecomDetail = Bool()
+    @State var showDetail = Bool()
     
     var body: some View {
         NavigationStack {
@@ -24,6 +26,12 @@ struct HomeView: View {
                 }
             }
             .background(Color(.systemGray6))
+            .navigationDestination(isPresented: $showRecomDetail) {
+                DetailView()
+            }
+            .navigationDestination(isPresented: $showDetail) {
+                DetailView()
+            }
         }
     }
 }
@@ -87,6 +95,9 @@ extension HomeView {
                     ForEach(0..<5, id: \.self) { _ in
                         TourLargeCard()
                             .padding(10)
+                            .onTapGesture {
+                                showRecomDetail.toggle()
+                            }
                     }
                 }
                 .padding(.leading, 10)
@@ -115,6 +126,9 @@ extension HomeView {
             LazyVStack(spacing: 20) {
                 ForEach(0..<5, id: \.self) { _ in
                     TourSmallCard()
+                        .onTapGesture {
+                            showDetail.toggle()
+                        }
                 }
             }
         }
