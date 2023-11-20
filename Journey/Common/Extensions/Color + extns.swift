@@ -7,5 +7,8 @@ extension Color {
     static var filterColor: Color {
         return Color("FilterColor")
     }
+    static var detailGrayColor: Color {
+        return Color("DetailGrayColor")
+    }
 }
 
