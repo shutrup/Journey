@@ -25,7 +25,7 @@ struct DetailOptionsCell: View {
         .background {
             RoundedRectangle(cornerRadius: 12)
                 .fill(.white)
-                .shadow(color: .black.opacity(0.05), radius: 2.5, x: 0, y: 0)
+                .shadow(color: .black.opacity(0.07), radius: 2.5, x: 0, y: 0)
         }
     }
 }
