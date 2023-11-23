@@ -1,10 +1,28 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var tabSelection = 1
+    @EnvironmentObject var store: Store
     
     var body: some View {
-        TabView(selection: $tabSelection) {
+        NavigationStack {
+            if store.showLogInScreen {
+                LoginView()
+                    .environmentObject(store)
+            } else {
+                tabBarViews
+            }
+        }
+    }
+}
+
+#Preview {
+    MainTabView()
+        .environmentObject(Store())
+}
+
+extension MainTabView {
+    private var tabBarViews: some View {
+        TabView(selection: $store.tabSelection) {
             HomeView()
                 .tag(1)
             
@@ -14,16 +32,13 @@ struct MainTabView: View {
             MapView()
                 .tag(3)
             
-            Text("Profile")
+            ProfileView()
+                .environmentObject(store)
                 .tag(4)
         }
         .overlay(alignment: .bottom) {
-            CustomTabView(tabSelection: $tabSelection)
+            CustomTabView(tabSelection: $store.tabSelection)
                 .offset(y: 10)
         }
     }
-}
-
-#Preview {
-    MainTabView()
 }

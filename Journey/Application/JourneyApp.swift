@@ -9,8 +9,11 @@ import SwiftUI
 
 @main
 struct JourneyApp: App {
+    @StateObject var store = Store()
+    
     init() {
         UITextField.appearance().clearButtonMode = .whileEditing
+        
         let appearance = UITabBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.stackedLayoutAppearance.normal.iconColor = .white
@@ -24,10 +27,9 @@ struct JourneyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                MainTabView()
-                    .preferredColorScheme(.light)
-            }
+            MainTabView()
+                .environmentObject(store)
+                .preferredColorScheme(.light)
         }
     }
 }

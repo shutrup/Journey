@@ -8,17 +8,9 @@
 import SwiftUI
 
 struct RegistrationView: View {
-    @State private var email = String()
-    @State private var name = String()
-    @State private var password = String()
-    @State private var confirmPassword = String()
+    @StateObject var viewModel = AuthViewModel(userDataService: UserDataService.userDataService)
+    @EnvironmentObject var store: Store
     @Environment(\.dismiss) var dismiss
-    
-    var isEmailValid: Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPredicate.evaluate(with: email)
-    }
     
     var body: some View {
         ZStack {
@@ -47,17 +39,19 @@ struct RegistrationView: View {
                     .padding(.top)
                 
                 VStack(spacing: 8) {
-                    RoundedTextField(placeholder: "Почта", text: $email, imageName: isEmailValid ? "checkmark" : "", isSecure: false, imageColor: .green)
+                    RoundedTextField(placeholder: "Почта", text: $viewModel.email, imageName: viewModel.isEmailValid ? "checkmark" : "", isSecure: false, imageColor: .green)
                     
-                    RoundedTextField(placeholder: "Имя", text: $name, imageName: isEmailValid ? "checkmark" : "", isSecure: false, imageColor: .green)
+                    RoundedTextField(placeholder: "Имя", text: $viewModel.name, isSecure: false, imageColor: .green)
                     
-                    RoundedTextField(placeholder: "Пароль", text: $password, imageName: isEmailValid ? "checkmark" : "", isSecure: true, imageColor: .secondary)
+                    RoundedTextField(placeholder: "Пароль", text: $viewModel.password, isSecure: true, imageColor: .secondary)
                     
-                    RoundedTextField(placeholder: "Подвердите пароль", text: $confirmPassword, imageName: isEmailValid ? "checkmark" : "",  isSecure: true, imageColor: .secondary)
+                    RoundedTextField(placeholder: "Подвердите пароль", text: $viewModel.confirmPassword, isSecure: true, imageColor: .secondary)
                 }
                 
                 Button {
-                    
+                    Task {
+                        await viewModel.registration()
+                    }
                 } label: {
                     Text("Создать")
                         .font(.rubikRegular(size: 14))
@@ -91,9 +85,19 @@ struct RegistrationView: View {
         .onTapGesture {
             UIApplication.shared.endEditing()
         }
+        .onChange(of: viewModel.authStatus) { oldValue, newValue in
+            if newValue == .loaded {
+                dismiss()
+                
+                withAnimation {
+                    store.showLogInScreen = false
+                }
+            }
+        }
     }
 }
 
 #Preview {
     RegistrationView()
+        .environmentObject(Store())
 }
