@@ -11,7 +11,6 @@ final class AuthViewModel: ObservableObject {
     init(userDataService: UserDataServiceProtocol) {
         self.userDataService = userDataService
     }
-    
     // Login View
     @Published var email = String()
     @Published var password = String()
@@ -52,8 +51,6 @@ final class AuthViewModel: ObservableObject {
     }
     
     func login() async {
-        guard validateFields() else { return }
-        
         authStatus = .loading
         
         let result = await userDataService.login(email: email, password: password)
@@ -84,11 +81,17 @@ final class AuthViewModel: ObservableObject {
             }
         case .failure(let error):
             authStatus = .failure
-            print(error.localizedDescription)
+            switch error {
+            case .serverError(let error):
+                serverErrorMessage = error
+                showingPopup = true
+            default:
+                print("Ошибка: \(error)")
+            }
         }
     }
     
-    func validateFields() -> Bool {
+    func validateLoginFields() -> Bool {
         withAnimation {
             errorMessage = nil
             
@@ -104,6 +107,34 @@ final class AuthViewModel: ObservableObject {
 
             guard password.count >= 8 else {
                 errorMessage = "Пароль должен быть не менее 8 символов"
+                return false
+            }
+
+            return true
+        }
+    }
+    
+    func validateRegistrationFields() -> Bool {
+        withAnimation {
+            errorMessage = nil
+            
+            guard !email.isEmpty && !password.isEmpty && !name.isEmpty && !confirmPassword.isEmpty else {
+                errorMessage = "Все поля должны быть заполнены"
+                return false
+            }
+            
+            guard isEmailValid else {
+                errorMessage = "Некорректный email"
+                return false
+            }
+
+            guard password.count >= 8 else {
+                errorMessage = "Пароль должен быть не менее 8 символов"
+                return false
+            }
+
+            guard password == confirmPassword else {
+                errorMessage = "Пароли не совпадают"
                 return false
             }
 

@@ -1,11 +1,5 @@
-//
-//  RegistrationView.swift
-//  Journey
-//
-//  Created by Шарап Бамматов on 14.11.2023.
-//
-
 import SwiftUI
+import PopupView
 
 struct RegistrationView: View {
     @StateObject var viewModel = AuthViewModel(userDataService: UserDataService.userDataService)
@@ -48,7 +42,16 @@ struct RegistrationView: View {
                     RoundedTextField(placeholder: "Подвердите пароль", text: $viewModel.confirmPassword, isSecure: true, imageColor: .secondary)
                 }
                 
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .font(.rubikRegular(size: 14))
+                        .foregroundColor(.white)
+                        .padding(.top, 10)
+                }
+                
                 Button {
+                    guard viewModel.validateRegistrationFields() else { return }
+                    
                     Task {
                         await viewModel.registration()
                     }
@@ -77,7 +80,7 @@ struct RegistrationView: View {
                 
                 GoogleAndFacebookButtons(googleAction: {}, facebookAction: {})
             }
-            .padding(.top, 50)
+            .padding(.top, 30)
             .padding(.vertical)
         }
         .edgesIgnoringSafeArea(.bottom)
@@ -93,6 +96,24 @@ struct RegistrationView: View {
                     store.showLogInScreen = false
                 }
             }
+        }
+        .popup(isPresented: $viewModel.showingPopup) {
+            HStack {
+                Image(systemName: "exclamationmark.triangle")
+                    .foregroundColor(.white)
+                Text(viewModel.serverErrorMessage ?? "")
+                    .font(.rubikRegular(size: 14))
+                    .foregroundColor(.white)
+            }
+            .frame(width: 280, height: 60)
+            .background(Color.red)
+            .cornerRadius(15.0)
+            .shadow(radius: 10)
+        } customize: {
+            $0.type(.floater())
+                .position(.top)
+                .animation(.spring())
+                .autohideIn(3)
         }
     }
 }

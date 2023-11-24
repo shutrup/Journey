@@ -102,6 +102,8 @@ extension LoginView {
             Spacer()
             
             Button {
+                guard viewModel.validateLoginFields() else { return }
+                
                 Task {
                     await viewModel.login()
                     
