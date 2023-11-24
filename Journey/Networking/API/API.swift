@@ -9,5 +9,9 @@ struct API {
         static let fetchAllUsers = "/user/fetch"
         static let create = "/user/create"
     }
+    
+    struct TourAPI {
+        static let fetch = "/tour/fetch"
+    }
 }
 

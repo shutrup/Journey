@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var searchText = String()
-    @State var showRecomDetail = Bool()
-    @State var showDetail = Bool()
+    @StateObject var viewModel = HomeViewModel()
     
     var body: some View {
         NavigationStack {
@@ -18,7 +16,7 @@ struct HomeView: View {
                 LazyVStack(spacing: 20) {
                     homeTitle
                     
-                    CustomSearchBar(searchText: $searchText, placeholder: "Думай", isShowFilter: false, action: {})
+                    CustomSearchBar(searchText: $viewModel.searchText, placeholder: "Думай", isShowFilter: false, action: {})
                     
                     tourLargeCardList
                     
@@ -26,10 +24,10 @@ struct HomeView: View {
                 }
             }
             .background(Color(.systemGray6))
-            .navigationDestination(isPresented: $showRecomDetail) {
+            .navigationDestination(isPresented: $viewModel.showRecomDetail) {
                 DetailView()
             }
-            .navigationDestination(isPresented: $showDetail) {
+            .navigationDestination(isPresented: $viewModel.showDetail) {
                 DetailView()
             }
         }
@@ -96,12 +94,14 @@ extension HomeView {
                         TourLargeCard()
                             .padding(10)
                             .onTapGesture {
-                                showRecomDetail.toggle()
+                                viewModel.showRecomDetail.toggle()
                             }
                     }
                 }
                 .padding(.leading, 10)
+                .scrollTargetLayout()
             }
+            .scrollTargetBehavior(.viewAligned)
         }
     }
     private var tourSmallCardList: some View {
@@ -127,7 +127,7 @@ extension HomeView {
                 ForEach(0..<5, id: \.self) { _ in
                     TourSmallCard()
                         .onTapGesture {
-                            showDetail.toggle()
+                            viewModel.showDetail.toggle()
                         }
                 }
             }

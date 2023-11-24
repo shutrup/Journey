@@ -33,10 +33,10 @@ class UserDataService: Request, UserDataServiceProtocol {
     static let userDataService = UserDataService()
     
     func login(email: String, password: String) async -> Result<UserResponse, RequestError> {
-        return await sendRequest(endpoint: UserServiceEndpoint.login(email: email, password: password), responseModel: UserResponse.self)
+        return await sendRequest(endpoint: UserEndpoint.login(email: email, password: password), responseModel: UserResponse.self)
     }
     
     func createUser(email: String, name: String, password: String) async -> Result<User, RequestError> {
-        return await sendRequest(endpoint: UserServiceEndpoint.createUser(email: email, name: name, password: password), responseModel: User.self)
+        return await sendRequest(endpoint: UserEndpoint.createUser(email: email, name: name, password: password), responseModel: User.self)
     }
 }

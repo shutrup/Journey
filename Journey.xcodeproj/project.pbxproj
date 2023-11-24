@@ -10,6 +10,10 @@
 		1512E95A2B03A1CA00281F12 /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512E9592B03A1CA00281F12 /* JourneyTitleView.swift */; };
 		1512E95C2B03A25500281F12 /* GoogleAndFacebookButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512E95B2B03A25500281F12 /* GoogleAndFacebookButtons.swift */; };
 		1512E95F2B03A2DC00281F12 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512E95E2B03A2DC00281F12 /* RegistrationView.swift */; };
+		1525B4442B10EE300037A100 /* TourEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525B4432B10EE2F0037A100 /* TourEndpoint.swift */; };
+		1525B4472B10EEA00037A100 /* Tour Data Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525B4462B10EEA00037A100 /* Tour Data Service.swift */; };
+		1525B44A2B10EEEA0037A100 /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525B4492B10EEEA0037A100 /* Tour.swift */; };
+		1525B44D2B10F1230037A100 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525B44C2B10F1230037A100 /* HomeViewModel.swift */; };
 		152E81E52B0B316E00A5F897 /* DetailOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152E81E42B0B316E00A5F897 /* DetailOptionsCell.swift */; };
 		152E81E72B0B34E100A5F897 /* TagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152E81E62B0B34E100A5F897 /* TagLayout.swift */; };
 		152E81E92B0B36E900A5F897 /* LayoutSubviews + extns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152E81E82B0B36E900A5F897 /* LayoutSubviews + extns.swift */; };
@@ -74,6 +78,10 @@
 		1512E9592B03A1CA00281F12 /* JourneyTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
 		1512E95B2B03A25500281F12 /* GoogleAndFacebookButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAndFacebookButtons.swift; sourceTree = "<group>"; };
 		1512E95E2B03A2DC00281F12 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		1525B4432B10EE2F0037A100 /* TourEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourEndpoint.swift; sourceTree = "<group>"; };
+		1525B4462B10EEA00037A100 /* Tour Data Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tour Data Service.swift"; sourceTree = "<group>"; };
+		1525B4492B10EEEA0037A100 /* Tour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tour.swift; sourceTree = "<group>"; };
+		1525B44C2B10F1230037A100 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		152E81E42B0B316E00A5F897 /* DetailOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailOptionsCell.swift; sourceTree = "<group>"; };
 		152E81E62B0B34E100A5F897 /* TagLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLayout.swift; sourceTree = "<group>"; };
 		152E81E82B0B36E900A5F897 /* LayoutSubviews + extns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LayoutSubviews + extns.swift"; sourceTree = "<group>"; };
@@ -155,6 +163,38 @@
 			path = "Registration Screen";
 			sourceTree = "<group>";
 		};
+		1525B4422B10ED570037A100 /* Tour Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				1525B4432B10EE2F0037A100 /* TourEndpoint.swift */,
+			);
+			path = "Tour Endpoint";
+			sourceTree = "<group>";
+		};
+		1525B4452B10EE8E0037A100 /* Tour Data Service */ = {
+			isa = PBXGroup;
+			children = (
+				1525B4462B10EEA00037A100 /* Tour Data Service.swift */,
+			);
+			path = "Tour Data Service";
+			sourceTree = "<group>";
+		};
+		1525B4482B10EEE40037A100 /* Tour */ = {
+			isa = PBXGroup;
+			children = (
+				1525B4492B10EEEA0037A100 /* Tour.swift */,
+			);
+			path = Tour;
+			sourceTree = "<group>";
+		};
+		1525B44B2B10F0EA0037A100 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1525B44C2B10F1230037A100 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		152FA8992B07AC7B007CC97A /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +215,7 @@
 		152FA8A12B07B34B007CC97A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1525B44B2B10F0EA0037A100 /* ViewModel */,
 				152FA8BA2B07C199007CC97A /* Components */,
 				152FA8A22B07B351007CC97A /* Home Screen */,
 			);
@@ -259,6 +300,7 @@
 		156C09DD2B034D0100B6C952 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1525B4482B10EEE40037A100 /* Tour */,
 				1570B90F2B0E40EA00407449 /* User */,
 				1570B92E2B0F375E00407449 /* Constants.swift */,
 			);
@@ -364,6 +406,7 @@
 		1570B9012B0E3F9200407449 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1525B4452B10EE8E0037A100 /* Tour Data Service */,
 				1570B91A2B0E487100407449 /* User Data Service */,
 			);
 			path = Services;
@@ -380,6 +423,7 @@
 		1570B9032B0E3FA200407449 /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
+				1525B4422B10ED570037A100 /* Tour Endpoint */,
 				1570B9172B0E475200407449 /* Endpoint Protocol */,
 				1570B9122B0E472E00407449 /* User Endpoint */,
 			);
@@ -648,9 +692,12 @@
 				1570B92F2B0F375E00407449 /* Constants.swift in Sources */,
 				1512E95A2B03A1CA00281F12 /* JourneyTitleView.swift in Sources */,
 				152FA89E2B07ADB2007CC97A /* CustomTabView.swift in Sources */,
+				1525B4472B10EEA00037A100 /* Tour Data Service.swift in Sources */,
 				15DF04422B0A18D600711D5E /* TourFilterView.swift in Sources */,
 				1570B91F2B0E498600407449 /* UserResponse.swift in Sources */,
+				1525B44A2B10EEEA0037A100 /* Tour.swift in Sources */,
 				152FA8C12B07F2AD007CC97A /* TourSmallCard.swift in Sources */,
+				1525B4442B10EE300037A100 /* TourEndpoint.swift in Sources */,
 				15DF04462B0A50D000711D5E /* Date+String.swift in Sources */,
 				1570B9282B0E4C7900407449 /* Data.swift in Sources */,
 				156C09CF2B034CA800B6C952 /* JourneyApp.swift in Sources */,
@@ -665,6 +712,7 @@
 				1570B9112B0E40F400407449 /* User.swift in Sources */,
 				1570B92D2B0E4CEC00407449 /* AuthViewModel.swift in Sources */,
 				1570B90C2B0E3FC300407449 /* RequestError.swift in Sources */,
+				1525B44D2B10F1230037A100 /* HomeViewModel.swift in Sources */,
 				1570B9192B0E477100407449 /* UserServiceEndpoint.swift in Sources */,
 				1570B9222B0E4A9000407449 /* Store.swift in Sources */,
 				152FA8A02B07AF69007CC97A /* Color + extns.swift in Sources */,

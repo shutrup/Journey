@@ -5,12 +5,16 @@ struct MainTabView: View {
     
     var body: some View {
         NavigationStack {
-            if store.showLogInScreen {
-                LoginView()
-                    .environmentObject(store)
-            } else {
+            #if DEBUG
                 tabBarViews
-            }
+            #else
+                if store.showLogInScreen {
+                    LoginView()
+                        .environmentObject(store)
+                } else {
+                    tabBarViews
+                }
+            #endif
         }
     }
 }

@@ -1,7 +1,7 @@
 
 import Foundation
 
-enum UserServiceEndpoint: Endpoint {
+enum UserEndpoint: Endpoint {
     case login(email: String, password: String)
     case createUser(email: String, name:String, password: String)
     
