@@ -1,7 +1,7 @@
 import Foundation
 
 @MainActor
-final class HomeViewModel: ObservableObject {
+final class SearchViewModel: ObservableObject {
     let tourDataService: TourDataServiceProtocol
     
     init(tourDataService: TourDataServiceProtocol) {
@@ -9,8 +9,12 @@ final class HomeViewModel: ObservableObject {
     }
     
     @Published var searchText = String()
-    @Published var showRecomDetail = Bool()
+    @Published var categories: [String] = ["Пейзажи","Горы","Водоемы","Что то","Кто то"]
+    @Published var selectedCategories: [String] = []
+    @Published var showFilter = Bool()
+    
     @Published var showDetail = Bool()
+    
     @Published var tours = [Tour]()
     
     func fetchAllTours() async {

@@ -20,7 +20,7 @@ class TourService: TourDataServiceProtocol {
 }
 
 class TourDataService: Request, TourDataServiceProtocol {
-    let tourDataService = TourDataService()
+    static let tourDataService = TourDataService()
     
     func fetch() async -> Result<[Tour], RequestError> {
         return await sendRequest(endpoint: TourEndpoint.fetch, responseModel: [Tour].self)

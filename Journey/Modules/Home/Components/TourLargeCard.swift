@@ -9,11 +9,12 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct TourLargeCard: View {
+    let tour: Tour
     @State private var isFavorite = true
     
     var body: some View {
         VStack(spacing: 3) {
-            WebImage(url: URL(string: "https://2spalnika.ru/wp-content/uploads/2022/12/sulakskiy-kanion-800x600.jpg")!)
+            WebImage(url: URL(string: tour.images.first!)!)
                 .resizable()
                 .placeholder {
                     ActivityIndicator(.constant(true))
@@ -40,7 +41,7 @@ struct TourLargeCard: View {
                 }
             
             HStack {
-                Text("Ахтынский водопад")
+                Text(tour.name)
                     .font(.ptSansBold(size: 22))
                     .foregroundStyle(.black)
                     .lineLimit(1)
@@ -48,7 +49,7 @@ struct TourLargeCard: View {
                 Spacer()
                 
                 HStack(spacing: 3) {
-                    Text("4.8")
+                    Text(String(format: "%.1f", tour.rating))
                         .font(.ptSansRegular(size: 16))
                         .foregroundStyle(.black.opacity(0.3))
                     
@@ -61,7 +62,7 @@ struct TourLargeCard: View {
                 Image(.mark)
                     .renderingMode(.original)
                 
-                Text("Шамильский район")
+                Text(tour.place)
                     .font(.ptSansRegular(size: 16))
                     .foregroundStyle(.black.opacity(0.3))
                 
@@ -80,5 +81,5 @@ struct TourLargeCard: View {
 }
 
 #Preview {
-    TourLargeCard()
+    TourLargeCard(tour: Tour.FETCH_MOCK)
 }

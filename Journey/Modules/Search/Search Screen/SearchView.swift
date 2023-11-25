@@ -8,12 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State var searchText = String()
-    @State var categories: [String] = ["Пейзажи","Горы","Водоемы","Что то","Кто то"]
-    @State var selectedCategories: [String] = []
-    @State var showFilter = Bool()
-    
-    @State var showDetail = Bool()
+    @StateObject var viewModel = SearchViewModel(tourDataService: TourDataService.tourDataService)
     
     private var gridItems: [GridItem] = [
         GridItem(spacing: 16),
@@ -22,15 +17,15 @@ struct SearchView: View {
     
     var body: some View {
         ZStack {
-            TourFilterView(show: $showFilter)
-                .isVisible(showFilter)
+            TourFilterView(show: $viewModel.showFilter)
+                .isVisible(viewModel.showFilter)
                 .zIndex(1)
             
             NavigationStack {
                 VStack {
-                    CustomSearchBar(searchText: $searchText, placeholder: "Думай", isShowFilter: true, action: {
+                    CustomSearchBar(searchText: $viewModel.searchText, placeholder: "Думай", isShowFilter: true, action: {
                         withAnimation {
-                            showFilter.toggle()
+                            viewModel.showFilter.toggle()
                         }
                     })
                     
@@ -38,26 +33,32 @@ struct SearchView: View {
                     
                     ScrollView {
                         LazyVGrid(columns: gridItems, spacing: 16, content: {
-                            ForEach(0..<10) { tour in
-                                TourGridCard(num: tour)
+                            ForEach(Array(viewModel.tours.enumerated()), id: \.element) { (index, tour) in
+                                TourGridCard(num: index, tour: tour)
                                     .onTapGesture {
-                                        showDetail.toggle()
+                                        viewModel.showDetail.toggle()
                                     }
                             }
                         })
                         .padding(.horizontal, 16)
+                        
+                        Spacer()
+                            .frame(height: 100)
                     }
                 }
                 .background(Color(.systemGray6))
                 .edgesIgnoringSafeArea(.bottom)
                 .onTapGesture {
                     withAnimation {
-                        showFilter = false
+                        viewModel.showFilter = false
                     }
                     UIApplication.shared.endEditing()
                 }
-                .navigationDestination(isPresented: $showDetail) {
+                .navigationDestination(isPresented: $viewModel.showDetail) {
                     DetailView()
+                }
+                .task {
+                    await viewModel.fetchAllTours()
                 }
             }
         }
@@ -72,15 +73,15 @@ extension SearchView {
     private var categoriesList: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
-                ForEach(categories, id: \.self) { category in
-                    CategoryRowView(text: category, isSelected: selectedCategories.contains(category))
+                ForEach(viewModel.categories, id: \.self) { category in
+                    CategoryRowView(text: category, isSelected: viewModel.selectedCategories.contains(category))
                         .padding([.leading, .top, .bottom])
                         .onTapGesture {
-                            guard selectedCategories.contains(category) else {
-                                selectedCategories.append(category)
+                            guard viewModel.selectedCategories.contains(category) else {
+                                viewModel.selectedCategories.append(category)
                                 return
                             }
-                            selectedCategories.removeAll(where: { $0 == category })
+                            viewModel.selectedCategories.removeAll(where: { $0 == category })
                         }
                 }
             }

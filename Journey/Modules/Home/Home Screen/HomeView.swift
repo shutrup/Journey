@@ -1,14 +1,7 @@
-//
-//  HomeView.swift
-//  Journey
-//
-//  Created by Шарап Бамматов on 17.11.2023.
-//
-
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var viewModel = HomeViewModel()
+    @StateObject var viewModel = HomeViewModel(tourDataService: TourDataService.tourDataService)
     
     var body: some View {
         NavigationStack {
@@ -29,6 +22,14 @@ struct HomeView: View {
             }
             .navigationDestination(isPresented: $viewModel.showDetail) {
                 DetailView()
+            }
+            .task {
+                await viewModel.fetchAllTours()
+            }
+            .refreshable {
+                Task {
+                    await viewModel.fetchAllTours()
+                }
             }
         }
     }
@@ -90,8 +91,8 @@ extension HomeView {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 0) {
-                    ForEach(0..<5, id: \.self) { _ in
-                        TourLargeCard()
+                    ForEach(viewModel.tours, id: \.self) { tour in
+                        TourLargeCard(tour: tour)
                             .padding(10)
                             .onTapGesture {
                                 viewModel.showRecomDetail.toggle()
@@ -124,8 +125,8 @@ extension HomeView {
             .padding(.horizontal, 20)
             
             LazyVStack(spacing: 20) {
-                ForEach(0..<5, id: \.self) { _ in
-                    TourSmallCard()
+                ForEach(viewModel.tours.reversed(), id: \.self) { tour in
+                    TourSmallCard(tour: tour)
                         .onTapGesture {
                             viewModel.showDetail.toggle()
                         }

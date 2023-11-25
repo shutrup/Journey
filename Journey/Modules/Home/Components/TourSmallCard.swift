@@ -9,9 +9,11 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct TourSmallCard: View {
+    let tour: Tour
+    
     var body: some View {
         HStack(spacing: 14) {
-            WebImage(url: URL(string: "https://laguna-gunib.ru/images/3ddefe47aa74d485f1670a8147281672cfa4cd9b-DLIlcCM.jpg")!)
+            WebImage(url: URL(string: tour.images.first!)!)
                 .resizable()
                 .placeholder {
                     ActivityIndicator(.constant(true))
@@ -24,10 +26,10 @@ struct TourSmallCard: View {
             
             VStack(alignment: .leading, spacing: 6) {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Село Гамсутль")
+                    Text(tour.name)
                         .font(.montserratSemiBold(size: 18))
                     
-                    Text("Дагестан")
+                    Text(tour.place)
                         .font(.montserratRegular(size: 10))
                         .foregroundStyle(.black.opacity(0.3))
                 }
@@ -36,9 +38,11 @@ struct TourSmallCard: View {
                     Image(.routing)
                         .renderingMode(.original)
                     
-                    Text("Махачкала")
+                    Text(tour.locates.first!.title)
                         .font(.montserratRegular(size: 10))
                         .foregroundColor(.black)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                     
                     HStack(spacing: 3) {
                         Rectangle()
@@ -57,9 +61,11 @@ struct TourSmallCard: View {
                           .background(Color(red: 0.85, green: 0.85, blue: 0.85))
                     }
                     
-                    Text("Гамсутль")
+                    Text(tour.locates.last!.title)
                         .font(.montserratRegular(size: 10))
                         .foregroundColor(.black)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                 }
                 
                 Spacer()
@@ -110,5 +116,5 @@ struct TourSmallCard: View {
 }
 
 #Preview {
-    TourSmallCard()
+    TourSmallCard(tour: Tour.FETCH_MOCK)
 }
