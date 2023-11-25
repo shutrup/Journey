@@ -8,6 +8,9 @@ struct TourFilterView: View {
     @State var toPrice = String()
     @State var fromPrice = String()
     
+    @State private var selectedPlace: String? = "Место"
+    @State private var selectedGroupSize: String? = nil
+    
     var body: some View {
         VStack(spacing: 16) {
             filterHeader
@@ -86,11 +89,14 @@ extension TourFilterView {
         .padding(.top, 23)
     }
     private var placePicker: some View {
-        VStack {
+        Menu {
+            Button("Махачкала", action: { selectedPlace = "Махачкала" })
+            Button("Дербент", action: { selectedPlace = "Дербент" })
+        } label: {
             HStack {
-                Image(.location)
+                Image(systemName: "location")
                 
-                Text("Место")
+                Text(selectedPlace ?? "Место")
                     .font(.ptSansRegular(size: 14))
                     .foregroundStyle(Color.filterColor)
                 
@@ -100,17 +106,25 @@ extension TourFilterView {
         }
     }
     private var groupSizePicker: some View {
-        VStack {
-            HStack {
-                Image(.people)
-                
-                Text("Численность группы / 1 минимум")
-                    .font(.ptSansRegular(size: 14))
-                    .foregroundStyle(Color.filterColor)
-                
-                Spacer()
+        Menu {
+            Button("1", action: { selectedGroupSize = "1" })
+            Button("5", action: { selectedGroupSize = "5" })
+            Button("10", action: { selectedGroupSize = "10" })
+            Button("15", action: { selectedGroupSize = "15" })
+            Button("20", action: { selectedGroupSize = "20" })
+        } label: {
+            VStack {
+                HStack {
+                    Image(.people)
+                    
+                    Text(selectedGroupSize ?? "Численность группы / 1 минимум")
+                        .font(.ptSansRegular(size: 14))
+                        .foregroundStyle(Color.filterColor)
+                    
+                    Spacer()
+                }
+                .modifier(FilterModifier())
             }
-            .modifier(FilterModifier())
         }
     }
 }

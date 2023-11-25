@@ -141,7 +141,6 @@ struct TourGridCard: View {
 }
 
 #Preview {
-    SearchView()
-//    TourGridCard(num: 0, tour: Tour.FETCH_MOCK)
+    TourGridCard(num: 0, tour: Tour.FETCH_MOCK)
         .previewLayout(.sizeThatFits)
 }

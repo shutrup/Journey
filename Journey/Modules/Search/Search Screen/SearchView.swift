@@ -30,6 +30,7 @@ struct SearchView: View {
                     })
                     
                     categoriesList
+                        .disabled(viewModel.showFilter)
                     
                     ScrollView {
                         LazyVGrid(columns: gridItems, spacing: 16, content: {
@@ -45,6 +46,7 @@ struct SearchView: View {
                         Spacer()
                             .frame(height: 100)
                     }
+                    .disabled(viewModel.showFilter)
                 }
                 .background(Color(.systemGray6))
                 .edgesIgnoringSafeArea(.bottom)
@@ -60,6 +62,12 @@ struct SearchView: View {
                 .task {
                     await viewModel.fetchAllTours()
                 }
+                .refreshable {
+                    Task {
+                        await viewModel.fetchAllTours()
+                    }
+                }
+                .blur(radius: viewModel.showFilter ? 5 : 0)
             }
         }
     }
