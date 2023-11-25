@@ -139,6 +139,10 @@ extension DetailView {
             ForEach(tour.images.prefix(3), id: \.self) { image in
                 WebImage(url: URL(string: image))
                     .resizable()
+                    .placeholder {
+                        ActivityIndicator(.constant(true))
+                            .scaleEffect(1.5)
+                    }
                     .frame(width: 54, height: 54)
                     .scaledToFill()
                     .clipShape(RoundedRectangle(cornerRadius: 16))
@@ -151,7 +155,9 @@ extension DetailView {
                         }
                     }
                     .onTapGesture {
-                        selectedImage = image
+                        withAnimation {
+                            selectedImage = image
+                        }
                     }
             }
             
@@ -174,7 +180,7 @@ extension DetailView {
     }
     private var detailDescription: some View {
         VStack(alignment: .leading, spacing: 2) {
-            HStack {
+            HStack(alignment: .top) {
                 Text(tour.name)
                     .font(.ptSansBold(size: 24))
                     .foregroundColor(.black)

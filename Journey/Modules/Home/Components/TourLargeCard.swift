@@ -19,7 +19,6 @@ struct TourLargeCard: View {
                 .placeholder {
                     ActivityIndicator(.constant(true))
                         .scaleEffect(2.5)
-                        
                 }
                 .frame(width: UIScreen.main.bounds.width / 1.47, height: UIScreen.main.bounds.height / 4.36)
                 .clipShape(RoundedRectangle(cornerRadius: 24))
