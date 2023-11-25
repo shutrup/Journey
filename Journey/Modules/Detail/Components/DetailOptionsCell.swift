@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct DetailOptionsCell: View {
-    var image: String
     var text: String
     
     var body: some View {
         HStack(spacing: 4) {
-            Image(image)
+            Image("car")
                 .foregroundStyle(Color.tabColor)
             
             Text(text)
@@ -31,5 +30,5 @@ struct DetailOptionsCell: View {
 }
 
 #Preview {
-    DetailOptionsCell(image: "car", text: "Транспорт")
+    DetailOptionsCell(text: "Транспорт")
 }

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct CategoryRowView: View {
-    let text: String
+    let category: Category
     let isSelected: Bool
     
     var body: some View {
-        Text(text)
+        Text(category.name)
             .font(.ptSansRegular(size: 15))
             .padding(.vertical, 10)
             .padding(.horizontal, 22)
@@ -27,5 +27,5 @@ struct CategoryRowView: View {
 }
 
 #Preview {
-    CategoryRowView(text: "Пейзажи", isSelected: true)
+    CategoryRowView(category: Category(_id: "f", name: "Пляжные"), isSelected: true)
 }

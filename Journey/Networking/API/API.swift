@@ -13,5 +13,10 @@ struct API {
     struct TourAPI {
         static let fetch = "/tour/fetch"
     }
+    
+    struct CategoryAPI {
+        static let fetchAllCategories = "/category/fetch"
+        static let fetchSingleCategory = "/category/"
+    }
 }
 

@@ -18,10 +18,14 @@ struct HomeView: View {
             }
             .background(Color(.systemGray6))
             .navigationDestination(isPresented: $viewModel.showRecomDetail) {
-                DetailView()
+                if var tour = viewModel.selectedTour {
+                    DetailView(tour: tour)
+                }
             }
             .navigationDestination(isPresented: $viewModel.showDetail) {
-                DetailView()
+                if var tour = viewModel.selectedTour {
+                    DetailView(tour: tour)
+                }
             }
             .task {
                 await viewModel.fetchAllTours()
@@ -95,6 +99,7 @@ extension HomeView {
                         TourLargeCard(tour: tour)
                             .padding(10)
                             .onTapGesture {
+                                viewModel.selectedTour = tour
                                 viewModel.showRecomDetail.toggle()
                             }
                     }
@@ -128,6 +133,7 @@ extension HomeView {
                 ForEach(viewModel.tours.reversed(), id: \.self) { tour in
                     TourSmallCard(tour: tour)
                         .onTapGesture {
+                            viewModel.selectedTour = tour
                             viewModel.showDetail.toggle()
                         }
                 }

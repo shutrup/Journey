@@ -1,19 +1,5 @@
 import Foundation
 
-struct Location: Codable, Hashable {
-    let id: String
-    let title: String
-    let latitude: Double
-    let longitude: Double
-
-    enum CodingKeys: String, CodingKey {
-        case id = "_id"
-        case title
-        case latitude
-        case longitude
-    }
-}
-
 struct Tour: Codable, Hashable {
     let id: String
     let name: String
@@ -22,11 +8,12 @@ struct Tour: Codable, Hashable {
     let images: [String]
     let pricePerPerson: Int
     let rating: Double
-    let categoryIds: [String]
-    let includedOptionIds: [String]
+    let categoryIds: Category
+    let includedOptionIds: [Category]
     let locates: [Location]
-    let gidIds: [String]
+    let gidIds: Gid
     let place: String
+    let duration: Int
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -41,6 +28,7 @@ struct Tour: Codable, Hashable {
         case locates
         case gidIds
         case place
+        case duration
     }
 }
 
@@ -49,7 +37,7 @@ extension Tour {
         Tour(
             id: "6505ae3cde799f5d87c4c239",
             name: "Сулакский каньон",
-            description: "Самый глубокий каньон Европы — гордость Дагестана и однозначное must-see место, без которого представление о республике было бы неполным...",
+            description: "Самый глубокий каньон Европы — гордость Дагестана и однозначное must-see место, без которого представление о республике было бы неполным",
             groupSize: 10,
             images: [
                 "https://cdn.tripster.ru/thumbs2/08450454-a1f7-11ec-bb18-ca2ddeace350.800x600.jpeg",
@@ -58,14 +46,14 @@ extension Tour {
             ],
             pricePerPerson: 3800,
             rating: 5.0,
-            categoryIds: ["650466244b2266eadcfb27e2", "650466434b2266eadcfb27ec"],
-            includedOptionIds: ["6505a4b6c4161ee9068aeaff", "6505a4bfc4161ee9068aeb01", "6505a4e7c4161ee9068aeb05"],
+            categoryIds: Category(_id: "f", name: "Приключенские"),
+            includedOptionIds: [Category(_id: "", name: "Транспорт"), Category(_id: "", name: "Транспорт")],
             locates: [
                 Location(id: "6505ae3cde799f5d87c4c23a", title: "Посёлок Дубки", latitude: 43.020873, longitude: 46.837476),
                 Location(id: "6505ae3cde799f5d87c4c23b", title: "с. Зубутли", latitude: 43.007834, longitude: 46.821935),
             ],
-            gidIds: ["650471094556f0adb32a4c0c"],
-            place: "г. Дербент"
+            gidIds: Gid(_id: "", name: "shur", avatar: "fasdf", rating: 5.0, socials: [Social(name: "", url: "", _id: "")]),
+            place: "г. Дербент", duration: 540
         )
     }
 }

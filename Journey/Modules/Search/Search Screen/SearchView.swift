@@ -37,6 +37,7 @@ struct SearchView: View {
                             ForEach(Array(viewModel.tours.enumerated()), id: \.element) { (index, tour) in
                                 TourGridCard(num: index, tour: tour)
                                     .onTapGesture {
+                                        viewModel.selectedTour = tour
                                         viewModel.showDetail.toggle()
                                     }
                             }
@@ -57,9 +58,12 @@ struct SearchView: View {
                     UIApplication.shared.endEditing()
                 }
                 .navigationDestination(isPresented: $viewModel.showDetail) {
-                    DetailView()
+                    if var tour = viewModel.selectedTour {
+                        DetailView(tour: tour)
+                    }
                 }
                 .task {
+                    await viewModel.fetchAllCategories()
                     await viewModel.fetchAllTours()
                 }
                 .refreshable {
@@ -82,7 +86,7 @@ extension SearchView {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
                 ForEach(viewModel.categories, id: \.self) { category in
-                    CategoryRowView(text: category, isSelected: viewModel.selectedCategories.contains(category))
+                    CategoryRowView(category: category, isSelected: viewModel.selectedCategories.contains(category))
                         .padding([.leading, .top, .bottom])
                         .onTapGesture {
                             guard viewModel.selectedCategories.contains(category) else {

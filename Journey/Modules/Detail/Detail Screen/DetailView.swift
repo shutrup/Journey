@@ -4,28 +4,49 @@ import SDWebImageSwiftUI
 
 struct DetailView: View {
     @Environment(\.dismiss) var dismiss
+    let tour: Tour
+    
     @State private var isFavorite = Bool()
     @State var selectedImage: String? = nil
-    
     @State var noLimit = Bool()
-    
-    @State var images: [String] = [
-        "https://laguna-gunib.ru/images/3ddefe47aa74d485f1670a8147281672cfa4cd9b-DLIlcCM.jpg",
-        "https://2spalnika.ru/wp-content/uploads/2022/12/sulakskiy-kanion-800x600.jpg",
-        "https://2spalnika.ru/wp-content/uploads/2022/12/sulakskiy-kanion-800x600.jpg",
-        "https://laguna-gunib.ru/images/3ddefe47aa74d485f1670a8147281672cfa4cd9b-DLIlcCM.jpg",
-        "https://laguna-gunib.ru/images/3ddefe47aa74d485f1670a8147281672cfa4cd9b-DLIlcCM.jpg",
-        "https://laguna-gunib.ru/images/3ddefe47aa74d485f1670a8147281672cfa4cd9b-DLIlcCM.jpg",
-        "https://laguna-gunib.ru/images/3ddefe47aa74d485f1670a8147281672cfa4cd9b-DLIlcCM.jpg"
-    ]
-    
     @State private var mapCameraPosition: MapCameraPosition
+    
+    func pluralForm(n: Int, form1: String, form2: String, form5: String) -> String {
+        let n10 = n % 10
+        let n100 = n % 100
+        
+        if n10 == 1 && n100 != 11 {
+            return form1
+        } else if n10 >= 2 && n10 <= 4 && !(n100 >= 12 && n100 <= 14) {
+            return form2
+        } else {
+            return form5
+        }
+    }
+    
+    var hours: String {
+        let totalHours = tour.duration / 60
+        let days = totalHours / 24
+        let remainingHours = totalHours % 24
 
-    init() {
+        if days > 0 {
+            return "\(days) " + pluralForm(n: days, form1: "день", form2: "дня", form5: "дней")
+        } else {
+            return "\(remainingHours) " + pluralForm(n: remainingHours, form1: "час", form2: "часа", form5: "часов")
+        }
+    }
+
+    var minutes: String {
+        let remainingMinutes = tour.duration % 60
+        return remainingMinutes > 0 ? "\(remainingMinutes) " + pluralForm(n: remainingMinutes, form1: "минута", form2: "минуты", form5: "минут") : ""
+    }
+    
+    init(tour: Tour) {
         let region = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: 43.0054, longitude: 46.8309),
             span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         self._mapCameraPosition = State(wrappedValue: .region(region))
+        self.tour = tour
     }
     
     var body: some View {
@@ -33,6 +54,8 @@ struct DetailView: View {
             VStack {
                 if let image = selectedImage {
                     WebImage(url: URL(string: image)!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 1.78)
                         .clipShape(RoundedRectangle(cornerRadius: 32))
                         .overlay(alignment: .top) {
@@ -53,8 +76,6 @@ struct DetailView: View {
                     description
                     
                     routing
-                    
-                    joinTour
                 }
             }
             
@@ -66,14 +87,14 @@ struct DetailView: View {
         }
         .ignoresSafeArea()
         .onAppear {
-            selectedImage = images[0]
+            selectedImage = tour.images[0]
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
 #Preview {
-    DetailView()
+    DetailView(tour: Tour.FETCH_MOCK)
 }
 
 extension DetailView {
@@ -115,8 +136,8 @@ extension DetailView {
     }
     private var footerImagePicker: some View {
         HStack(alignment: .top, spacing: 8) {
-            ForEach(images.prefix(3), id: \.self) { image in
-                WebImage(url: URL(string: image)!)
+            ForEach(tour.images.prefix(3), id: \.self) { image in
+                WebImage(url: URL(string: image))
                     .resizable()
                     .frame(width: 54, height: 54)
                     .scaledToFill()
@@ -134,26 +155,36 @@ extension DetailView {
                     }
             }
             
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.tabColor)
-                .frame(width: 54, height: 54)
-                .overlay {
-                    Text("+\(images.count - 3)")
-                        .font(.montserratMedium(size: 14))
-                        .foregroundColor(.white)
-                }
+            if tour.images.count > 3 {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.tabColor)
+                    .frame(width: 54, height: 54)
+                    .overlay {
+                        Text("+\(tour.images.count - 3)")
+                            .font(.montserratMedium(size: 14))
+                            .foregroundColor(.white)
+                    }
+            }
         }
         .padding(8)
-        .frame(width: 256, height: 70, alignment: .top)
+        .frame(height: 70, alignment: .top)
         .background(.white.opacity(0.7))
         .cornerRadius(16)
         .padding(.bottom, 12)
     }
     private var detailDescription: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text("Cулакский каньон")
-                .font(.ptSansBold(size: 24))
-                .foregroundColor(.black)
+            HStack {
+                Text(tour.name)
+                    .font(.ptSansBold(size: 24))
+                    .foregroundColor(.black)
+                
+                Spacer()
+                
+                Text(tour.categoryIds.name)
+                    .font(.ptSansBold(size: 14))
+                    .foregroundColor(Color.tabColor)
+            }
             
             HStack(spacing: 5) {
                 Image(.location)
@@ -161,7 +192,7 @@ extension DetailView {
                     .frame(width: 16, height: 16)
                     .foregroundStyle(Color.tabColor)
                 
-                Text("Сулакский каньон")
+                Text(tour.place)
                     .font(.ptSansRegular(size: 14))
                     .foregroundStyle(Color.detailGrayColor)
             }
@@ -174,11 +205,13 @@ extension DetailView {
             DetailDescriptionCard(title: "Длительность")
                 .overlay {
                     VStack(spacing: 0) {
-                        Text("3 часа")
+                        Text(hours)
                             .font(.ptSansBold(size: 18))
                         
-                        Text("30 мин")
-                            .font(.ptSansRegular(size: 14))
+                        if !minutes.isEmpty {
+                            Text(minutes)
+                                .font(.ptSansRegular(size: 14))
+                        }
                     }
                     .padding(.top)
                 }
@@ -188,7 +221,7 @@ extension DetailView {
             DetailDescriptionCard(title: "Мест")
                 .overlay {
                     VStack(spacing: 0) {
-                        Text("16")
+                        Text("\(tour.groupSize)")
                             .font(.ptSansBold(size: 18))
                     }
                     .padding(.top)
@@ -200,7 +233,7 @@ extension DetailView {
                 .overlay {
                     VStack(spacing: 0) {
                         HStack {
-                            Text("4.2")
+                            Text(String(format: "%.1f", tour.rating))
                                 .font(.ptSansBold(size: 18))
                             
                             Image(.star)
@@ -209,9 +242,9 @@ extension DetailView {
                                 .frame(width: 16, height: 16)
                         }
                         
-                        Text("234: отзыва")
+                        Text("24: отзыва")
                             .font(.ptSansRegular(size: 14))
-                              .underline()
+                            .underline()
                     }
                     .foregroundColor(.black)
                     .padding(.top)
@@ -227,8 +260,8 @@ extension DetailView {
             
             ScrollView(.vertical, showsIndicators: false) {
                 TagLayout(alignment: .leading, spacing: 10) {
-                    ForEach(0..<5, id: \.self) { option in
-                        DetailOptionsCell(image: "car", text: "транспорт")
+                    ForEach(tour.includedOptionIds, id: \.self) { option in
+                        DetailOptionsCell(text: option.name)
                             .padding(.top, 2.5)
                     }
                 }
@@ -243,7 +276,7 @@ extension DetailView {
                 .font(.ptSansBold(size: 18))
                 .foregroundStyle(.black)
             
-            Text("Сулакский каньон в Дагестане – один из глубочайших в мире и самый крупный в Европе. Его протяженность составляет 53 километра, ширина достигает 3,5 км, а самая нижняя точка находится на уровне 1920 м. Выполнив несложные математические подсчеты, становится ясно, что это больше, чем у Большого каньона на плато в Колорадо, на целых 320 метров. Расположена известная природная достопримечательность в центральной части Дагестана в долине речки Сулак (впадает в Каспийское море). Это именно она на протяжении столетий вымывала песчаник и наполняла образующуюся впадину чистой бирюзовой водой.")
+            Text(tour.description)
                 .font(.ptSansRegular(size: 16))
                 .foregroundStyle(Color.detailGrayColor)
                 .lineLimit(noLimit ? nil : 6)
@@ -295,40 +328,6 @@ extension DetailView {
         .padding(.top, 0)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
-    private var joinTour: some View {
-        HStack {
-            Text("Присоединяйся к:")
-                .font(.montserratRegular(size: 12))
-                .foregroundStyle(.black)
-            
-            HStack(spacing: -5) {
-                ForEach(0..<4, id: \.self) { _ in
-                    Image(.face)
-                        .resizable()
-                        .frame(width: 26, height: 26)
-                }
-                
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 26, height: 26)
-                    .background(Color(red: 0.92, green: 0.92, blue: 0.92))
-                    .cornerRadius(60)
-                    .overlay(
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 60)
-                                .inset(by: 0.25)
-                                .stroke(.white, lineWidth: 0.5)
-                            
-                            Text("+8")
-                                .font(.montserratMedium(size: 10))
-                                .foregroundStyle(Color.tabColor)
-                        }
-                    )
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .trailing)
-        .padding(.horizontal, 16)
-    }
     private var bottomButtons: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -336,7 +335,7 @@ extension DetailView {
                     .font(.ptSansRegular(size: 16))
                     .foregroundStyle(Color.detailGrayColor)
                 
-                Text("2 300 руб / 1 человек")
+                Text("\(tour.pricePerPerson) руб / 1 человек")
                     .font(.ptSansRegular(size: 16))
                     .foregroundStyle(Color.black)
             }

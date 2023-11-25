@@ -12,6 +12,7 @@ final class HomeViewModel: ObservableObject {
     @Published var showRecomDetail = Bool()
     @Published var showDetail = Bool()
     @Published var tours = [Tour]()
+    @Published var selectedTour: Tour? = nil
     
     func fetchAllTours() async {
         let result = await tourDataService.fetch()
