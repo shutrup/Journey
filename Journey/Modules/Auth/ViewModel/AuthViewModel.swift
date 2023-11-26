@@ -33,7 +33,7 @@ final class AuthViewModel: ObservableObject {
     @Published var showingPopup = false
     @Published var serverErrorMessage: String? {
         didSet {
-            if errorMessage != nil {
+            if serverErrorMessage != nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     withAnimation {
                         self.serverErrorMessage = nil

@@ -1,10 +1,3 @@
-//
-//  SearchView.swift
-//  Journey
-//
-//  Created by Шарап Бамматов on 18.11.2023.
-//
-
 import SwiftUI
 
 struct SearchView: View {
@@ -33,16 +26,22 @@ struct SearchView: View {
                         .disabled(viewModel.showFilter)
                     
                     ScrollView {
-                        LazyVGrid(columns: gridItems, spacing: 16, content: {
-                            ForEach(Array(viewModel.tours.enumerated()), id: \.element) { (index, tour) in
-                                TourGridCard(num: index, tour: tour)
-                                    .onTapGesture {
-                                        viewModel.selectedTour = tour
-                                        viewModel.showDetail.toggle()
-                                    }
-                            }
-                        })
-                        .padding(.horizontal, 16)
+                        if viewModel.tours.isEmpty {
+                            Text("Результатов не нашли")
+                                .padding()
+                                .foregroundColor(.gray)
+                        } else {
+                            LazyVGrid(columns: gridItems, spacing: 16, content: {
+                                ForEach(Array(viewModel.tours.enumerated()), id: \.element) { (index, tour) in
+                                    TourGridCard(num: index, tour: tour)
+                                        .onTapGesture {
+                                            viewModel.selectedTour = tour
+                                            viewModel.showDetail.toggle()
+                                        }
+                                }
+                            })
+                            .padding(.horizontal, 16)
+                        }
                         
                         Spacer()
                             .frame(height: 100)
@@ -58,7 +57,7 @@ struct SearchView: View {
                     UIApplication.shared.endEditing()
                 }
                 .navigationDestination(isPresented: $viewModel.showDetail) {
-                    if var tour = viewModel.selectedTour {
+                    if let tour = viewModel.selectedTour {
                         DetailView(tour: tour)
                     }
                 }

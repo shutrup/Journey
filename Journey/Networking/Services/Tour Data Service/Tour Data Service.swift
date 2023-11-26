@@ -2,6 +2,7 @@ import Foundation
 
 protocol TourDataServiceProtocol {
     func fetch() async -> Result<[Tour], RequestError>
+    func search(title: String) async -> Result<[Tour], RequestError>
     func fetchCategories() async -> Result<[Category], RequestError>
 }
 
@@ -29,6 +30,16 @@ class TourService: TourDataServiceProtocol {
             return .failure(failure)
         }
     }
+    
+    func search(title: String) async -> Result<[Tour], RequestError> {
+        let result = await tourDataService.search(title: title)
+        switch result {
+        case .success(let success):
+            return .success(success)
+        case .failure(let failure):
+            return .failure(failure)
+        }
+    }
 }
 
 class TourDataService: Request, TourDataServiceProtocol {
@@ -40,5 +51,9 @@ class TourDataService: Request, TourDataServiceProtocol {
     
     func fetchCategories() async -> Result<[Category], RequestError> {
         return await sendRequest(endpoint: TourEndpoint.fetchCategories, responseModel: [Category].self)
+    }
+    
+    func search(title: String) async -> Result<[Tour], RequestError> {
+        return await sendRequest(endpoint: TourEndpoint.search(title: title), responseModel: [Tour].self)
     }
 }
