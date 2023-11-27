@@ -25,6 +25,7 @@ extension MainTabView {
         TabView(selection: $store.tabSelection) {
             HomeView()
                 .tag(1)
+                .environmentObject(store)
             
             SearchView()
                 .tag(2)

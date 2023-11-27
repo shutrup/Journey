@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var store: Store
     @StateObject var viewModel = HomeViewModel(tourDataService: TourDataService.tourDataService)
     
     var body: some View {
@@ -10,6 +11,12 @@ struct HomeView: View {
                     homeTitle
                     
                     CustomSearchBar(searchText: $viewModel.searchText, placeholder: "Думай", isShowFilter: false, action: {})
+                        .disabled(true)
+                        .onTapGesture {
+                            withAnimation {
+                                store.tabSelection = 2
+                            }
+                        }
                     
                     tourLargeCardList
                     
@@ -18,12 +25,12 @@ struct HomeView: View {
             }
             .background(Color(.systemGray6))
             .navigationDestination(isPresented: $viewModel.showRecomDetail) {
-                if var tour = viewModel.selectedTour {
+                if let tour = viewModel.selectedTour {
                     DetailView(tour: tour)
                 }
             }
             .navigationDestination(isPresented: $viewModel.showDetail) {
-                if var tour = viewModel.selectedTour {
+                if let tour = viewModel.selectedTour {
                     DetailView(tour: tour)
                 }
             }
@@ -42,6 +49,7 @@ struct HomeView: View {
 #Preview {
     NavigationStack {
         HomeView()
+            .environmentObject(Store())
     }
 }
 
@@ -84,7 +92,10 @@ extension HomeView {
                 Spacer()
                 
                 Button {
-                    
+                    withAnimation {
+                        store.tabSelection = 2
+                    }
+
                 } label: {
                     Text("Все")
                         .font(.montserratSemiBold(size: 16))
@@ -119,13 +130,13 @@ extension HomeView {
                 
                 Spacer()
                 
-                Button {
-                    
-                } label: {
-                    Text("Все")
-                        .font(.montserratSemiBold(size: 16))
-                        .foregroundStyle(Color.tabColor)
-                }
+//                Button {
+//                    
+//                } label: {
+//                    Text("Все")
+//                        .font(.montserratSemiBold(size: 16))
+//                        .foregroundStyle(Color.tabColor)
+//                }
             }
             .padding(.horizontal, 20)
             

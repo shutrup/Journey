@@ -3,6 +3,7 @@ import Foundation
 enum TourEndpoint: Endpoint {
     case fetch
     case search(title: String)
+    case fetchByCategory(id: String)
     case fetchCategories
     case fetchCategory(id: String)
     
@@ -16,19 +17,21 @@ enum TourEndpoint: Endpoint {
             return API.CategoryAPI.fetchAllCategories
         case .fetchCategory(let id):
             return API.CategoryAPI.fetchSingleCategory + "/" + id
+        case .fetchByCategory:
+            return API.TourAPI.fetchByCategory
         }
     }
     
     var method: RequestMethod {
         switch self {
-        case .fetch, .fetchCategories, .fetchCategory, .search:
+        case .fetch, .fetchCategories, .fetchCategory, .search, .fetchByCategory:
             return .get
         }
     }
     
     var header: [String : String]? {
         switch self {
-        case .fetch, .fetchCategories, .fetchCategory, .search:
+        case .fetch, .fetchCategories, .fetchCategory, .search, .fetchByCategory:
             return nil
         }
     }
@@ -36,9 +39,12 @@ enum TourEndpoint: Endpoint {
     var parameters: [String : Any]? {
         switch self {
         case .search(let title):
-            print(title)
             return [
                 "title" : title.utf8
+            ]
+        case .fetchByCategory(let id):
+            return [
+                "categoryId" : id
             ]
         case .fetch, .fetchCategories, .fetchCategory:
             return nil

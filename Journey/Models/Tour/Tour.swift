@@ -14,6 +14,8 @@ struct Tour: Codable, Hashable {
     let gidIds: Gid
     let place: String
     let duration: Int
+    let startCity: String
+    let startDate: String
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -29,6 +31,8 @@ struct Tour: Codable, Hashable {
         case gidIds
         case place
         case duration
+        case startCity
+        case startDate
     }
 }
 
@@ -53,7 +57,7 @@ extension Tour {
                 Location(id: "6505ae3cde799f5d87c4c23b", title: "с. Зубутли", latitude: 43.007834, longitude: 46.821935),
             ],
             gidIds: Gid(_id: "", name: "shur", avatar: "fasdf", rating: 5.0, socials: [Social(name: "", url: "", _id: "")]),
-            place: "г. Дербент", duration: 540
+            place: "г. Дербент", duration: 540, startCity: "Махачкала", startDate: "20.11.2023"
         )
     }
 }

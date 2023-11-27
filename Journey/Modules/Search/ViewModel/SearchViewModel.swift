@@ -13,7 +13,7 @@ final class SearchViewModel: ObservableObject {
     
     @Published var isSearchPerformed = false
     @Published var searchText = String()
-    @Published var selectedCategories: [Category] = []
+    @Published var selectedCategory: Category? = nil
     @Published var showFilter = Bool()
     @Published var showDetail = Bool()
     
@@ -23,6 +23,19 @@ final class SearchViewModel: ObservableObject {
     
     func fetchAllTours() async {
         let result = await tourDataService.fetch()
+        
+        switch result {
+        case .success(let data):
+            withAnimation {
+                self.tours = data
+            }
+        case .failure(let error):
+            print(error)
+        }
+    }
+    
+    func fetchByCategory(id: String) async {
+        let result = await tourDataService.fetchByCategory(id: id)
         
         switch result {
         case .success(let data):

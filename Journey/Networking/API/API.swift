@@ -13,6 +13,7 @@ struct API {
     struct TourAPI {
         static let fetch = "/tour/fetch"
         static let search = "/tours/search/"
+        static let fetchByCategory = "/tours/byCategory"
     }
     
     struct CategoryAPI {

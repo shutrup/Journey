@@ -71,6 +71,17 @@ struct SearchView: View {
                     }
                 }
                 .blur(radius: viewModel.showFilter ? 5 : 0)
+                .onChange(of: viewModel.selectedCategory) { oldValue, newValue in
+                    if let categoryId = newValue?._id {
+                        Task {
+                            await viewModel.fetchByCategory(id: categoryId)
+                        }
+                    } else {
+                        Task {                        
+                            await viewModel.fetchAllTours()
+                        }
+                    }
+                }
             }
         }
     }
@@ -85,14 +96,18 @@ extension SearchView {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
                 ForEach(viewModel.categories, id: \.self) { category in
-                    CategoryRowView(category: category, isSelected: viewModel.selectedCategories.contains(category))
+                    CategoryRowView(category: category, isSelected: viewModel.selectedCategory == category)
                         .padding([.leading, .top, .bottom])
                         .onTapGesture {
-                            guard viewModel.selectedCategories.contains(category) else {
-                                viewModel.selectedCategories.append(category)
-                                return
+                            if category == viewModel.selectedCategory {
+                                withAnimation {
+                                    viewModel.selectedCategory = nil
+                                }
+                            } else {
+                                withAnimation {
+                                    viewModel.selectedCategory = category
+                                }
                             }
-                            viewModel.selectedCategories.removeAll(where: { $0 == category })
                         }
                 }
             }
