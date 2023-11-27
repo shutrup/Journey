@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct FavoriteView: View {
+    @Binding var show: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+        }
+        .navigationTitle("Избранные")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    FavoriteView()
+    FavoriteView(show: .constant(false))
 }
