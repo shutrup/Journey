@@ -11,6 +11,7 @@ struct SearchView: View {
     var body: some View {
         ZStack {
             TourFilterView(show: $viewModel.showFilter)
+                .environmentObject(viewModel)
                 .isVisible(viewModel.showFilter)
                 .zIndex(1)
             
@@ -47,6 +48,11 @@ struct SearchView: View {
                             .frame(height: 100)
                     }
                     .disabled(viewModel.showFilter)
+                    .refreshable {
+                        Task {
+                            await viewModel.fetchAllTours()
+                        }
+                    }
                 }
                 .background(Color(.systemGray6))
                 .edgesIgnoringSafeArea(.bottom)
@@ -59,15 +65,6 @@ struct SearchView: View {
                 .navigationDestination(isPresented: $viewModel.showDetail) {
                     if let tour = viewModel.selectedTour {
                         DetailView(tour: tour)
-                    }
-                }
-                .task {
-                    await viewModel.fetchAllCategories()
-                    await viewModel.fetchAllTours()
-                }
-                .refreshable {
-                    Task {
-                        await viewModel.fetchAllTours()
                     }
                 }
                 .blur(radius: viewModel.showFilter ? 5 : 0)

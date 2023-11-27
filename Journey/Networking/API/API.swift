@@ -14,6 +14,7 @@ struct API {
         static let fetch = "/tour/fetch"
         static let search = "/tours/search/"
         static let fetchByCategory = "/tours/byCategory"
+        static let filter = "/tour/filter"
     }
     
     struct CategoryAPI {

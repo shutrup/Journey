@@ -8,6 +8,9 @@ final class SearchViewModel: ObservableObject {
     
     init(tourDataService: TourDataServiceProtocol) {
         self.tourDataService = tourDataService
+        Task {
+            await fetchAllCategories()
+        }
         setupSearchSubscription()
     }
     
@@ -53,6 +56,19 @@ final class SearchViewModel: ObservableObject {
         switch result {
         case .success(let data):
             self.categories = data
+        case .failure(let error):
+            print(error)
+        }
+    }
+    
+    func filter(startDate: String?, endDate: String?, minPrice: String?, maxPrice: String?, startCity: String?, groupSize: String?) async {
+        let result = await tourDataService.filter(startDate: startDate, endDate: endDate, minPrice: minPrice, maxPrice: maxPrice, startCity: startCity, groupSize: groupSize)
+        
+        switch result {
+        case .success(let data):
+            withAnimation {
+                self.tours = data
+            }
         case .failure(let error):
             print(error)
         }

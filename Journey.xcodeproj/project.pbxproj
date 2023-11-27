@@ -14,7 +14,7 @@
 		151D2C9A2B12207900428113 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D2C992B12207900428113 /* Location.swift */; };
 		151D2C9D2B12219300428113 /* Gid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D2C9C2B12219300428113 /* Gid.swift */; };
 		1525B4442B10EE300037A100 /* TourEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525B4432B10EE2F0037A100 /* TourEndpoint.swift */; };
-		1525B4472B10EEA00037A100 /* Tour Data Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525B4462B10EEA00037A100 /* Tour Data Service.swift */; };
+		1525B4472B10EEA00037A100 /* TourDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525B4462B10EEA00037A100 /* TourDataService.swift */; };
 		1525B44A2B10EEEA0037A100 /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525B4492B10EEEA0037A100 /* Tour.swift */; };
 		1525B44D2B10F1230037A100 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525B44C2B10F1230037A100 /* HomeViewModel.swift */; };
 		1525B4502B11300F0037A100 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525B44F2B11300F0037A100 /* SearchViewModel.swift */; };
@@ -86,7 +86,7 @@
 		151D2C992B12207900428113 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		151D2C9C2B12219300428113 /* Gid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gid.swift; sourceTree = "<group>"; };
 		1525B4432B10EE2F0037A100 /* TourEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourEndpoint.swift; sourceTree = "<group>"; };
-		1525B4462B10EEA00037A100 /* Tour Data Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tour Data Service.swift"; sourceTree = "<group>"; };
+		1525B4462B10EEA00037A100 /* TourDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourDataService.swift; sourceTree = "<group>"; };
 		1525B4492B10EEEA0037A100 /* Tour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tour.swift; sourceTree = "<group>"; };
 		1525B44C2B10F1230037A100 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1525B44F2B11300F0037A100 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 		1525B4452B10EE8E0037A100 /* Tour Data Service */ = {
 			isa = PBXGroup;
 			children = (
-				1525B4462B10EEA00037A100 /* Tour Data Service.swift */,
+				1525B4462B10EEA00037A100 /* TourDataService.swift */,
 			);
 			path = "Tour Data Service";
 			sourceTree = "<group>";
@@ -740,7 +740,7 @@
 				1570B92F2B0F375E00407449 /* Constants.swift in Sources */,
 				1512E95A2B03A1CA00281F12 /* JourneyTitleView.swift in Sources */,
 				152FA89E2B07ADB2007CC97A /* CustomTabView.swift in Sources */,
-				1525B4472B10EEA00037A100 /* Tour Data Service.swift in Sources */,
+				1525B4472B10EEA00037A100 /* TourDataService.swift in Sources */,
 				15DF04422B0A18D600711D5E /* TourFilterView.swift in Sources */,
 				1570B91F2B0E498600407449 /* UserResponse.swift in Sources */,
 				1525B44A2B10EEEA0037A100 /* Tour.swift in Sources */,

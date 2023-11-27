@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct TourFilterView: View {
+    @EnvironmentObject var viewModel: SearchViewModel
     @Binding var show: Bool
     @State var toDate: Date = .now
     @State var fromDate: Date = .now
@@ -8,9 +9,9 @@ struct TourFilterView: View {
     @State var toPrice = String()
     @State var fromPrice = String()
     
-    @State private var selectedPlace: String? = "Место"
+    @State private var selectedPlace: String? = nil
     @State private var selectedGroupSize: String? = nil
-    
+
     var body: some View {
         VStack(spacing: 16) {
             filterHeader
@@ -34,9 +35,11 @@ struct TourFilterView: View {
                 
                 Spacer()
                 
-                
                 Button {
-                    
+                    Task {
+                        await viewModel.filter(startDate: nil, endDate: nil, minPrice: toPrice, maxPrice: fromPrice, startCity: selectedPlace, groupSize: selectedGroupSize)
+                        show.toggle()
+                    }
                 } label: {
                     RoundedRectangle(cornerRadius: 16)
                         .fill(Color.tabColor)
@@ -64,6 +67,7 @@ struct TourFilterView: View {
 
 #Preview {
     TourFilterView(show: .constant(true))
+        .environmentObject(SearchViewModel(tourDataService: TourDataService.tourDataService))
 }
 
 extension TourFilterView {
@@ -90,6 +94,9 @@ extension TourFilterView {
     }
     private var placePicker: some View {
         Menu {
+            if selectedPlace != nil {
+                Button("Пусто", action: { selectedPlace = nil })
+            }
             Button("Махачкала", action: { selectedPlace = "Махачкала" })
             Button("Дербент", action: { selectedPlace = "Дербент" })
         } label: {
@@ -107,6 +114,9 @@ extension TourFilterView {
     }
     private var groupSizePicker: some View {
         Menu {
+            if selectedGroupSize != nil {
+                Button("Пусто", action: { selectedGroupSize = nil })
+            }
             Button("1", action: { selectedGroupSize = "1" })
             Button("5", action: { selectedGroupSize = "5" })
             Button("10", action: { selectedGroupSize = "10" })

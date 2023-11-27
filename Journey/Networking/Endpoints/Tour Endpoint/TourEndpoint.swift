@@ -4,6 +4,8 @@ enum TourEndpoint: Endpoint {
     case fetch
     case search(title: String)
     case fetchByCategory(id: String)
+    case filter(startDate: String?, endDate: String?, minPrice: String?, maxPrice: String?, startCity: String?, groupSize: String?)
+    
     case fetchCategories
     case fetchCategory(id: String)
     
@@ -15,6 +17,8 @@ enum TourEndpoint: Endpoint {
             return API.TourAPI.search
         case .fetchCategories:
             return API.CategoryAPI.fetchAllCategories
+        case .filter:
+            return API.TourAPI.filter
         case .fetchCategory(let id):
             return API.CategoryAPI.fetchSingleCategory + "/" + id
         case .fetchByCategory:
@@ -24,14 +28,14 @@ enum TourEndpoint: Endpoint {
     
     var method: RequestMethod {
         switch self {
-        case .fetch, .fetchCategories, .fetchCategory, .search, .fetchByCategory:
+        case .fetch, .fetchCategories, .fetchCategory, .search, .fetchByCategory, .filter:
             return .get
         }
     }
     
     var header: [String : String]? {
         switch self {
-        case .fetch, .fetchCategories, .fetchCategory, .search, .fetchByCategory:
+        case .fetch, .fetchCategories, .fetchCategory, .search, .fetchByCategory, .filter:
             return nil
         }
     }
@@ -40,11 +44,20 @@ enum TourEndpoint: Endpoint {
         switch self {
         case .search(let title):
             return [
-                "title" : title.utf8
+                "title" : title
             ]
         case .fetchByCategory(let id):
             return [
                 "categoryId" : id
+            ]
+        case .filter(let startDate, let endDate, let minPrice, let maxPrice, let startCity, let groupSize):
+            return [
+                "startDate" : startDate ?? "",
+                "endDate" :  endDate ?? "",
+                "minPrice" : minPrice ?? "",
+                "maxPrice" : maxPrice ?? "",
+                "startCity" : startCity ?? "",
+                "groupSize" : groupSize ?? ""
             ]
         case .fetch, .fetchCategories, .fetchCategory:
             return nil
