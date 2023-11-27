@@ -1,22 +1,12 @@
-//
-//  MapView.swift
-//  Journey
-//
-//  Created by Шарап Бамматов on 19.11.2023.
-//
-
 import SwiftUI
 import MapKit
 
 struct MapView: View {
+    @StateObject var manager = LocationManager()
+    
     var body: some View {
-        VStack {
-            Map {
-                
-            }
-            .ignoresSafeArea()
+        Map(coordinateRegion: $manager.region, showsUserLocation: true)
             .edgesIgnoringSafeArea(.all)
-        }
     }
 }
 
