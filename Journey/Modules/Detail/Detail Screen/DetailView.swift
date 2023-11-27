@@ -6,10 +6,12 @@ struct DetailView: View {
     @Environment(\.dismiss) var dismiss
     let tour: Tour
     
-    @State private var isFavorite = Bool()
+    @State private var isFavorite = true
     @State var selectedImage: String? = nil
     @State var noLimit = Bool()
     @State private var mapCameraPosition: MapCameraPosition
+    
+    @State private var selectedIndex: Int = 0
     
     func pluralForm(n: Int, form1: String, form2: String, form5: String) -> String {
         let n10 = n % 10
@@ -28,14 +30,14 @@ struct DetailView: View {
         let totalHours = tour.duration / 60
         let days = totalHours / 24
         let remainingHours = totalHours % 24
-
+        
         if days > 0 {
             return "\(days) " + pluralForm(n: days, form1: "день", form2: "дня", form5: "дней")
         } else {
             return "\(remainingHours) " + pluralForm(n: remainingHours, form1: "час", form2: "часа", form5: "часов")
         }
     }
-
+    
     var minutes: String {
         let remainingMinutes = tour.duration % 60
         return remainingMinutes > 0 ? "\(remainingMinutes) " + pluralForm(n: remainingMinutes, form1: "минута", form2: "минуты", form5: "минут") : ""
@@ -52,18 +54,23 @@ struct DetailView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
-                if let image = selectedImage {
-                    WebImage(url: URL(string: image)!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 1.78)
-                        .clipShape(RoundedRectangle(cornerRadius: 32))
-                        .overlay(alignment: .top) {
-                            headerButtonsImage
-                        }
-                        .overlay(alignment: .bottom) {
-                            footerImagePicker
-                        }
+                TabView(selection: $selectedIndex) {
+                    ForEach(tour.images.indices, id: \.self) { index in
+                        WebImage(url: URL(string: tour.images[index])!)
+                            .resizable()
+                            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 1.78)
+                            .aspectRatio(contentMode: .fill)
+                            .tag(index)
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 1.78)
+                .clipShape(RoundedRectangle(cornerRadius: 32))
+                .overlay(alignment: .top) {
+                    headerButtonsImage
+                }
+                .overlay(alignment: .bottom) {
+                    footerImagePicker
                 }
                 
                 VStack(spacing: 20) {
@@ -87,7 +94,8 @@ struct DetailView: View {
         }
         .ignoresSafeArea()
         .onAppear {
-            selectedImage = tour.images[0]
+//            selectedImage = tour.images[0]
+            selectedIndex = 0
         }
         .navigationBarBackButtonHidden(true)
     }
@@ -136,8 +144,8 @@ extension DetailView {
     }
     private var footerImagePicker: some View {
         HStack(alignment: .top, spacing: 8) {
-            ForEach(tour.images.prefix(3), id: \.self) { image in
-                WebImage(url: URL(string: image))
+            ForEach(tour.images.indices, id: \.self) { index in
+                WebImage(url: URL(string: tour.images[index]))
                     .resizable()
                     .placeholder {
                         ActivityIndicator(.constant(true))
@@ -148,7 +156,7 @@ extension DetailView {
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     .clipped()
                     .overlay {
-                        if selectedImage == image {
+                        if selectedIndex == index {
                             RoundedRectangle(cornerRadius: 16)
                                 .inset(by: 0.5)
                                 .stroke(Color.tabColor, lineWidth: 2)
@@ -156,7 +164,7 @@ extension DetailView {
                     }
                     .onTapGesture {
                         withAnimation {
-                            selectedImage = image
+                            selectedIndex = index
                         }
                     }
             }
