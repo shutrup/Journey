@@ -60,6 +60,11 @@ struct LoginView: View {
                 .animation(.spring())
                 .autohideIn(3)
         }
+        .onChange(of: viewModel.authStatus) { oldValue, newValue in
+            if newValue == .loaded {
+                store.userId = viewModel.user?._id ?? ""
+            }
+        }
     }
 }
 

@@ -92,6 +92,8 @@ struct RegistrationView: View {
             if newValue == .loaded {
                 dismiss()
                 
+                store.userId = viewModel.user?._id ?? ""
+                
                 withAnimation {
                     store.showLogInScreen = false
                 }

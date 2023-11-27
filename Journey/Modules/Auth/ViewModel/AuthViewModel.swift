@@ -18,6 +18,7 @@ final class AuthViewModel: ObservableObject {
     @Published var confirmPassword = String()
     @Published var showRegistrView = Bool()
     @Published var authStatus: AuthStatus = .none
+    @Published var user: User? = nil
     
     @Published var errorMessage: String? {
         didSet {
@@ -56,6 +57,7 @@ final class AuthViewModel: ObservableObject {
         let result = await userDataService.login(email: email, password: password)
         switch result {
         case .success(let data):
+            user = data.user
             authStatus = .loaded
             Constants.userID = data.user._id
         case .failure(let error):
@@ -139,6 +141,17 @@ final class AuthViewModel: ObservableObject {
             }
 
             return true
+        }
+    }
+    
+    func fetchUser(id: String) async {
+        let result = await userDataService.fetchUser(id: id)
+        
+        switch result {
+        case .success(let data):
+            self.user = data
+        case .failure(let error):
+            print(error)
         }
     }
 }

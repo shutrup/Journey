@@ -4,6 +4,7 @@ import Foundation
 enum UserEndpoint: Endpoint {
     case login(email: String, password: String)
     case createUser(email: String, name:String, password: String)
+    case fetchUser(id: String)
     
     var path: String {
         switch self {
@@ -11,11 +12,15 @@ enum UserEndpoint: Endpoint {
             return API.UserAPI.login
         case .createUser:
             return API.UserAPI.create
+        case .fetchUser:
+            return API.UserAPI.fetchSingleUser
         }
     }
     
     var method: RequestMethod {
         switch self {
+        case .fetchUser:
+            return .get
         case .login, .createUser:
             return .post
         }
@@ -27,6 +32,10 @@ enum UserEndpoint: Endpoint {
     
     var parameters: [String : Any]? {
         switch self {
+        case .fetchUser(let id):
+            return [
+                "id" : id
+            ]
         case .login(let email, let password):
             return [
                 "email": email,

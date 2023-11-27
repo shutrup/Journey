@@ -4,11 +4,13 @@ struct MainTabView: View {
     @EnvironmentObject var store: Store
     
     var body: some View {
-        if store.showLogInScreen {
-            LoginView()
-                .environmentObject(store)
-        } else {
-            tabBarViews
+        NavigationStack {
+            if store.showLogInScreen {
+                LoginView()
+                    .environmentObject(store)
+            } else {
+                tabBarViews
+            }
         }
     }
 }

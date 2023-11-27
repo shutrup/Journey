@@ -18,9 +18,17 @@ struct ProfileRowView: View {
                 action()
             } label: {
                 HStack(spacing: 23) {
-                    Image(systemName: image)
-                        .imageScale(.medium)
-                        .bold()
+                    if image == "star" {
+                        Image(.bookmark)
+                            .resizable()
+                            .frame(width: 18, height: 18)
+                            .foregroundStyle(Color.tabColor)
+                    } else {
+                        Image(systemName: image)
+                            .imageScale(.medium)
+                            .bold()
+                            .foregroundStyle(Color.tabColor)
+                    }
                     
                     Text(title)
                         .font(.ptSansBold(size: 20))
@@ -29,12 +37,15 @@ struct ProfileRowView: View {
             }
             .foregroundStyle(.black)
             
-            Divider()
+            RoundedRectangle(cornerRadius: 2)
+                .fill(Color.gray.opacity(0.3))
+                .frame(maxWidth: .infinity, maxHeight: 2)
         }
         .padding(.horizontal, 20)
     }
 }
 
 #Preview {
-    ProfileRowView(image: "arrow.right.to.line", title: "Выход", action: {})
+    ProfileView()
+        .environmentObject(Store())
 }

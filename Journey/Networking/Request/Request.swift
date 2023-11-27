@@ -34,7 +34,6 @@ class Request {
         }
         
         do {
-            print(request.url)
             let (data, response) = try await URLSession.shared.data(from: request)
             guard let httpResponse = response as? HTTPURLResponse else {
                 return .failure(.noResponse)

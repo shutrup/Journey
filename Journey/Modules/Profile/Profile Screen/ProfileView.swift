@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var store: Store
     @State var showFavorite: Bool = false
+    @StateObject var viewModel = AuthViewModel(userDataService: UserDataService.userDataService)
     
     var body: some View {
         NavigationStack {
@@ -19,8 +20,28 @@ struct ProfileView: View {
                     .frame(width: 150, height: 150)
                     .clipShape(Circle())
                     .padding(.top, 20)
+                    .overlay(alignment: .bottomTrailing) {
+                        Button {
+                            
+                        } label: {
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 50, height: 50)
+                                .overlay {
+                                    Circle()
+                                        .fill(Color.tab)
+                                        .frame(width: 40, height: 40)
+                                        .overlay {
+                                            Image(systemName: "pencil")
+                                                .imageScale(.large)
+                                                .foregroundStyle(.white)
+                                                .bold()
+                                        }
+                                }
+                        }
+                    }
                 
-                Text("Shurup")
+                Text(viewModel.user?.name ?? "UserName")
                     .font(.ptSansBold(size: 24))
                 
                 VStack(spacing: 30) {
@@ -39,12 +60,15 @@ struct ProfileView: View {
                 
                 Spacer()
             }
+            .navigationDestination(isPresented: $showFavorite) {
+                FavoriteView(show: $showFavorite)
+            }
+            .task {
+                await viewModel.fetchUser(id: store.userId)
+            }
         }
         .navigationTitle("Профиль")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationDestination(isPresented: $showFavorite) {
-            FavoriteView(show: $showFavorite)
-        }
     }
 }
 
