@@ -45,8 +45,8 @@ struct DetailView: View {
     
     init(tour: Tour) {
         let region = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 43.0054, longitude: 46.8309),
-            span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+            center: CLLocationCoordinate2D(latitude: tour.locates.first!.latitude, longitude: tour.locates.first!.longitude),
+            span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3))
         self._mapCameraPosition = State(wrappedValue: .region(region))
         self.tour = tour
     }
