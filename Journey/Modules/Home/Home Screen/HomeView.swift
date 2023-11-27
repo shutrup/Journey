@@ -10,14 +10,6 @@ struct HomeView: View {
                 LazyVStack(spacing: 20) {
                     homeTitle
                     
-                    CustomSearchBar(searchText: $viewModel.searchText, placeholder: "Думай", isShowFilter: false, action: {})
-                        .disabled(true)
-                        .onTapGesture {
-                            withAnimation {
-                                store.tabSelection = 2
-                            }
-                        }
-                    
                     tourLargeCardList
                     
                     tourSmallCardList
