@@ -15,7 +15,7 @@ enum TourSize {
 }
 
 struct TourGridCard: View {
-    @State private var isFavorite = true
+    @Binding var isFavorite: Bool
     var num: Int
     let tour: Tour
     
@@ -124,12 +124,12 @@ struct TourGridCard: View {
             } label: {
                 ZStack {
                     Circle()
-                        .fill(.black.opacity(0.5))
+                        .fill(isFavorite ? .black.opacity(0.5) : .white.opacity(0.6))
                         .frame(width: 36, height: 36)
                     
                     Image(.bookmark)
                         .resizable()
-                        .frame(width: 16, height: 16)
+                        .frame(width: 18, height: 18)
                         .foregroundStyle(isFavorite ? Color.white  : .tabColor)
                         .animation(.snappy, value: isFavorite)
                 }
@@ -141,6 +141,6 @@ struct TourGridCard: View {
 }
 
 #Preview {
-    TourGridCard(num: 0, tour: Tour.FETCH_MOCK)
+    TourGridCard(isFavorite: .constant(false), num: 0, tour: Tour.FETCH_MOCK)
         .previewLayout(.sizeThatFits)
 }

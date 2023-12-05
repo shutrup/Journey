@@ -31,15 +31,15 @@ struct ProfileRowView: View {
                     }
                     
                     Text(title)
-                        .font(.ptSansBold(size: 20))
+                        .font(.montserratMedium(size: 16))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             .foregroundStyle(.black)
             
             RoundedRectangle(cornerRadius: 2)
-                .fill(Color.gray.opacity(0.3))
-                .frame(maxWidth: .infinity, maxHeight: 2)
+                .fill(.black.opacity(0.2))
+                .frame(maxWidth: .infinity, maxHeight: 0.5)
         }
         .padding(.horizontal, 20)
     }

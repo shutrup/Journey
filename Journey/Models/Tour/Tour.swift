@@ -1,6 +1,6 @@
 import Foundation
 
-struct Tour: Codable, Hashable {
+struct Tour: Identifiable, Codable, Hashable {
     let id: String
     let name: String
     let description: String
@@ -10,7 +10,7 @@ struct Tour: Codable, Hashable {
     let rating: Double
     let categoryIds: Category
     let includedOptionIds: [Category]
-    let locates: [Location]
+    let locates: [TourLocation]
     let gidIds: Gid
     let place: String
     let duration: Int
@@ -53,8 +53,8 @@ extension Tour {
             categoryIds: Category(_id: "f", name: "Приключенские"),
             includedOptionIds: [Category(_id: "", name: "Транспорт"), Category(_id: "", name: "Транспорт")],
             locates: [
-                Location(id: "6505ae3cde799f5d87c4c23a", title: "Посёлок Дубки", latitude: 43.020873, longitude: 46.837476),
-                Location(id: "6505ae3cde799f5d87c4c23b", title: "с. Зубутли", latitude: 43.007834, longitude: 46.821935),
+                TourLocation(id: "6505ae3cde799f5d87c4c23a", title: "Посёлок Дубки", latitude: 43.020873, longitude: 46.837476),
+                TourLocation(id: "6505ae3cde799f5d87c4c23b", title: "с. Зубутли", latitude: 43.007834, longitude: 46.821935),
             ],
             gidIds: Gid(_id: "", name: "shur", avatar: "fasdf", rating: 5.0, socials: [Social(name: "", url: "", _id: "")]),
             place: "г. Дербент", duration: 540, startCity: "Махачкала", startDate: "20.11.2023"

@@ -1,6 +1,6 @@
 import Foundation
 
-struct Location: Codable, Hashable {
+struct TourLocation: Codable, Hashable {
     let id: String
     let title: String
     let latitude: Double

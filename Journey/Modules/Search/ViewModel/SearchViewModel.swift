@@ -14,22 +14,29 @@ final class SearchViewModel: ObservableObject {
         setupSearchSubscription()
     }
     
+    @Published var hasSetInitialRegion = false
     @Published var isSearchPerformed = false
     @Published var searchText = String()
     @Published var selectedCategory: Category? = nil
     @Published var showFilter = Bool()
     @Published var showDetail = Bool()
-    
     @Published var tours = [Tour]()
     @Published var categories = [Category]()
     @Published var selectedTour: Tour? = nil
+    {
+        didSet {
+            isPopupPresented = selectedTour != nil
+        }
+    }
+    @Published var isPopupPresented = false
+    
     
     func fetchAllTours() async {
         let result = await tourDataService.fetch()
         
         switch result {
         case .success(let data):
-            withAnimation {
+            withAnimation(.bouncy) {
                 self.tours = data
             }
         case .failure(let error):
@@ -42,7 +49,7 @@ final class SearchViewModel: ObservableObject {
         
         switch result {
         case .success(let data):
-            withAnimation {
+            withAnimation(.bouncy) {
                 self.tours = data
             }
         case .failure(let error):

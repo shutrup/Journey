@@ -34,7 +34,7 @@ struct SearchView: View {
                         } else {
                             LazyVGrid(columns: gridItems, spacing: 16, content: {
                                 ForEach(Array(viewModel.tours.enumerated()), id: \.element) { (index, tour) in
-                                    TourGridCard(num: index, tour: tour)
+                                    TourGridCard(isFavorite: .constant(true), num: index, tour: tour)
                                         .onTapGesture {
                                             viewModel.selectedTour = tour
                                             viewModel.showDetail.toggle()

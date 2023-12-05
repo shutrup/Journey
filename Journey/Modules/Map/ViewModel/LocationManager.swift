@@ -19,10 +19,10 @@ final class LocationManager: NSObject, ObservableObject {
     
     func setup() {
         switch locationManager.authorizationStatus {
-        //If we are authorized then we request location just once, to center the map
+        
         case .authorizedWhenInUse:
             locationManager.requestLocation()
-        //If we don´t, we request authorization
+        
         case .notDetermined:
             locationManager.startUpdatingLocation()
             locationManager.requestWhenInUseAuthorization()

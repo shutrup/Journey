@@ -42,7 +42,7 @@ struct ProfileView: View {
                     }
                 
                 Text(viewModel.user?.name ?? "UserName")
-                    .font(.ptSansBold(size: 24))
+                    .font(.ptSansBold(size: 20))
                 
                 VStack(spacing: 30) {
                     ProfileRowView(image: "star", title: "Избранные", action: {
